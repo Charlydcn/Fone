@@ -1,0 +1,50 @@
+PROJET E-COMMERCE TELEPHONIE/HIGH-TECH
+
+Produits ?
+-> Smartphones (iPhone, Samsung, Google, Xiaomi, Oppo, Huawei, OnePlus...)
+-> Accessoires
+-> Coques/Etuis
+-> Protection écran
+-> Batterie externe
+-> Chargeur
+-> Support
+-> ...
+
+-> Montres connectées
+-> Accessoires
+-> Bracelets
+-> Chargeurs
+-> Coques/Etuis
+-> ...
+
+Must have :
+-> panier
+-> ...
+
+Should have :
+-> ...
+-> ...
+
+Could have :
+-> ...
+-> ...
+
+Won't have :
+-> ...
+-> ...
+
+panier, dashboard (crud), // authentification,
+
+TUTO TRELLO:
+https://www.youtube.com/watch?v=Rv7bMVQidvQ
+
+TUTOS FIGMA:
+https://www.youtube.com/watch?v=vaMICSS-x7w&ab_channel=FlorentKiecken-SDLV
+https://www.youtube.com/watch?v=FK4YusHIIj0&ab_channel=developedbyed
+https://www.youtube.com/watch?v=HZuk6Wkx_Eg&ab_channel=FluxAcademy
+
+INSPIRATION DESIGN:
+https://www.youtube.com/@Bedimcode
+https://www.youtube.com/watch?v=74UVy9gomVs
+
+https://themeforest.net/
