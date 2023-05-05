@@ -2,10 +2,13 @@
 
 namespace Controller;
 
-session_start();
-
 use Model\Connect;
 
 class homeController
 {
+
+    function displayHome()
+    {
+        require 'view/home.php';
+    }
 }
