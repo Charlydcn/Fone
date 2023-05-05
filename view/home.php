@@ -9,11 +9,11 @@ ob_start();
     <div>
         <h1>Find what's best for you</h1>
 
-        <a href="home.php">SHOP NOW</a>
+        <a href="index.php?action=home">SHOP NOW</a>
     </div>
 
     <figure>
-        <img src="../public/img/homepage.jpg" alt="phone saying Hello" id="homepage_img">
+        <img src="public/img/homepage.jpg" alt="phone saying Hello" id="homepage_img">
     </figure>
 
 </div>
