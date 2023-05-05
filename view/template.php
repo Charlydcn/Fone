@@ -6,6 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Josefin+Sans">
+    <link rel='stylesheet' href='public/css/style.css'>
     <link rel='stylesheet' href='public/css/<?= $css ?>'>
     <title> <?= $title ?> </title>
 </head>
@@ -41,26 +43,26 @@
             <!-- LOGO -->
             <ul>
                 <li>
-                    <a href="">Fone</a>
+                    <a href="index.php?action=home">Fone</a>
                 </li>
             </ul>
 
             <!-- LINKS -->
             <ul>
                 <li>
-                    <a href="">HOME</a>
+                    <a href="index.php?action=home" class="hover-underline-animation">HOME</a>
                 </li>
                 <li>
-                    <a href="">PRODUCTS</a>
+                    <a href="" class="hover-underline-animation">PRODUCTS</a>
                 </li>
                 <li>
-                    <a href="">SALE</a>
+                    <a href="" class="hover-underline-animation">SALE</a>
                 </li>
                 <li>
-                    <a href="">ABOUT</a>
+                    <a href="" class="hover-underline-animation">ABOUT</a>
                 </li>
                 <li>
-                    <a href="">CONTACT</a>
+                    <a href="" class="hover-underline-animation">CONTACT</a>
                 </li>
             </ul>
 
@@ -72,14 +74,13 @@
                 <li>
                     <a href=""><i class="fa-regular fa-heart"></i></a>
                 </li>
+
                 <li>
-                    <a href=""><i class="fa-solid fa-bag-shopping"></i></a>
-                </li>
-                <li>
-                    <a href="">3</a>
+                    <a href=""><i class="fa-solid fa-bag-shopping"></i> 3</a>
                 </li>
             </ul>
         </nav>
+
 
 
     </header>
