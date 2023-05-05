@@ -48,3 +48,29 @@ https://www.youtube.com/@Bedimcode
 https://www.youtube.com/watch?v=74UVy9gomVs
 
 https://themeforest.net/
+
+Controlleurs: (fonctions liés à chaque sections)
+panier
+produit (affichage produits, catégories, détails des produits, etc.)
+commande (valider/créer une commande)
+home (affichage de l'accueil)
+
+(client) futur -> security controller : (affiche la page de connexion (juste mdp))
+admin controller (affichage dashboards, + connexion)
+pour admin ou client, mettre un truc en session (booléen sûrement)
+
+Modèle:
+juste un qui se co à la bdd
+
+commande:
+id_commande
+produit
+date de commande
+infos des clients
+prix total
+
+peut-être 2 templates (admin et classique)
+
+les fonctions récurrentes peuvent-être mises dans le modèle
+
+caractèristiques des produits ?
