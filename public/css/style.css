@@ -1,0 +1,88 @@
+* {
+    font-family: 'Josefin Sans', sans-serif;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* NAV */
+nav:first-of-type {
+    display:none;
+}
+
+nav:nth-of-type(2) {
+    display: flex;
+    flex-direction: row;
+    margin:5%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav:nth-of-type(2) ul li a {
+    text-decoration: none;
+    color: black;
+    font-size: 20px;
+}
+
+nav:nth-of-type(2) ul {
+    list-style-type: none;
+}
+
+/* LOGO */
+nav:nth-of-type(2) ul:first-of-type li a {
+    font-size: 48px;
+}
+
+/* LINKS */
+nav:nth-of-type(2) ul:nth-of-type(2) {
+    display: flex;
+    gap:3rem;
+}
+
+/* ICONS */
+nav:nth-of-type(2) ul:nth-of-type(3) {
+    display:flex;
+    gap:1.5rem;
+}
+
+/* HOVER */
+
+/* UNDERLINE ON LINKS */
+.w3rcontainer{
+   border: 1px solid #cccfdb;
+   border-radius: 2px;
+} 
+.hover-underline-animation {
+  display: inline-block;
+  position: relative;
+  color: #000000;
+}
+
+.hover-underline-animation:after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 1px;
+  bottom: 0;
+  left: 0;
+  background-color: #000000;
+  transform-origin: bottom right;
+  transition: transform 0.25s ease-out;
+}
+
+.hover-underline-animation:hover:after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+/* HOVER LOGOS */
+nav:nth-of-type(2) ul:nth-of-type(3) li {
+    transition:.3s;
+}
+
+nav:nth-of-type(2) ul:nth-of-type(3) li:hover {
+    transform:scale(1.1);
+}
+
+
