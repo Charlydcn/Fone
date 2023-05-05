@@ -17,9 +17,9 @@ $ctrlProduct = new productController();
 if (isset($_GET['action'])) {
     switch ($_GET['action']) {
 
-        case "allProducts":
+        case "home":
 
-            $ctrlProduct->getAllProducts();
+            $ctrlHome->displayHome();
 
             break;
     }
