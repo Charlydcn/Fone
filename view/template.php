@@ -16,27 +16,6 @@
 
     <header>
 
-        <!-- PRODUCTS SELECT MENU -->
-        <nav>
-            <ul>
-                <li>
-                    <a href="">All products</a>
-                </li>
-                <li>
-                    <a href="">Smartphones</a>
-                </li>
-                <li>
-                    <a href="">Accessories</a>
-                </li>
-                <li>
-                    <a href="">Smartwatches</a>
-                </li>
-                <li>
-                    <a href="">Bracelets/Watch cases</a>
-                </li>
-            </ul>
-        </nav>
-
         <!-- MAIN NAV -->
         <nav>
 
@@ -53,7 +32,10 @@
                     <a href="index.php?action=home" class="hover-underline-animation">HOME</a>
                 </li>
                 <li>
-                    <a href="" class="hover-underline-animation">PRODUCTS</a>
+                    <a href="" class="hover-underline-animation">
+                        PRODUCTS
+                        <i class="fa-solid fa-angle-down"></i>
+                    </a>
                 </li>
                 <li>
                     <a href="" class="hover-underline-animation">SALE</a>
@@ -81,7 +63,26 @@
             </ul>
         </nav>
 
-
+        <!-- PRODUCTS SELECT MENU -->
+        <nav>
+            <ul>
+                <li>
+                    <a href="">All products</a>
+                </li>
+                <li>
+                    <a href="">Smartphones</a>
+                </li>
+                <li>
+                    <a href="">Accessories</a>
+                </li>
+                <li>
+                    <a href="">Smartwatches</a>
+                </li>
+                <li>
+                    <a href="">Bracelets/Watch cases</a>
+                </li>
+            </ul>
+        </nav>
 
     </header>
 
