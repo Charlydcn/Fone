@@ -5,7 +5,7 @@ ob_start();
 ?>
 
 
-<div>
+<div id="main_container">
     <div>
         <h1>Find what's best for you</h1>
 
