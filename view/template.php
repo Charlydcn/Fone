@@ -56,7 +56,7 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="" class="hover-underline-animation">SALE</a>
+                    <a href="index.php?action=sales" class="hover-underline-animation">SALE</a>
                 </li>
                 <li>
                     <a href="" class="hover-underline-animation">ABOUT</a>

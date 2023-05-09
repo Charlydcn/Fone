@@ -49,3 +49,7 @@ div li:last-of-type {
     font-weight: 600;
     font-size: 20px;
 }
+
+#sales h2 {
+    color:#E35353;
+}

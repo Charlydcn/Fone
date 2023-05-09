@@ -3,6 +3,7 @@
 ob_start();
 
 $products = $sql->fetchAll();
+
 ?>
 
 <h1>Smartphones</h1>

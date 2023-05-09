@@ -52,5 +52,11 @@ if (isset($_GET['action'])) {
             $ctrlProduct->displayWatchAccessories();
 
             break;
+
+        case "sales":
+
+            $ctrlProduct->displaySales();
+
+            break;
     }
 }

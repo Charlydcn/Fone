@@ -7,4 +7,4 @@ productsLink.addEventListener('click', function(event) {
   
   // passe la liste en display flex
   productsList.style.display = (productsList.style.display === 'flex') ? 'none' : 'flex';
-});
+});  
