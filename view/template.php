@@ -39,19 +39,19 @@
                     <!-- PRODUCTS SELECT MENU -->
                     <ul id="select_list">
                         <li>
-                            <a href="">All products</a>
+                            <a href="index.php?action=allProducts">All products</a>
                         </li>
                         <li>
-                            <a href="">Smartphones</a>
+                            <a href="index.php?action=smartphones">Smartphones</a>
                         </li>
                         <li>
-                            <a href="">Accessories</a>
+                            <a href="index.php?action=smartwatches">Smartwatches</a>
                         </li>
                         <li>
-                            <a href="">Smartwatches</a>
+                            <a href="index.php?action=accessories">Accessories</a>
                         </li>
                         <li>
-                            <a href="">Bracelets/Watch cases</a>
+                            <a href="index.php?action=watchaccessories">Bracelets/Watch cases</a>
                         </li>
                     </ul>
                 </li>
