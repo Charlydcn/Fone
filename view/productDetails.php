@@ -2,7 +2,9 @@
 
 ob_start();
 
-$product = $sql->fetch()
+$product = $sql->fetch();
+
+$newPrice = $product['price'] * ((1 - ($product['sale']) / 100));
 
 ?>
 
@@ -10,7 +12,25 @@ $product = $sql->fetch()
     <img src="public/img/<?= $product['category'] . "/" . $product['img'] ?>" alt="<?= $product['name'] ?> photo">
     <ul>
         <li><?= $product['name'] ?></li>
-        <li>$<?= $product['price'] ?></li>
+
+        <?php
+        if ($product['sale'] > 0) {
+        ?>
+
+            <li>
+                <span class="oldPrice">$<?= $product['price'] . "</span><h2>$" . $newPrice ?></h2>
+                    <p>-<?= $product['sale'] ?>%</p>
+            </li>
+
+
+        <?php
+        } else {
+        ?>
+
+            <li class="price">$<?= $product['price'] ?></li>
+
+        <?php } ?>
+
         <li><?= $product['description'] ?></li>
         <li>Quantity :</li>
         <div>
