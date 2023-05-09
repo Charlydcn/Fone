@@ -9,6 +9,15 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Josefin+Sans">
     <link rel='stylesheet' href='public/css/style.css'>
     <link rel='stylesheet' href='public/css/<?= $css ?>'>
+    <?php
+    if (isset($css2)) {
+    ?>
+
+        <link rel='stylesheet' href='public/css/<?= $css2 ?>'>
+
+    <?php } ?>
+
+
     <title> <?= $title ?> </title>
 </head>
 
