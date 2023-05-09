@@ -4,7 +4,12 @@ article {
     flex-direction: row;
     width: 90%;
     margin: auto;
-    position:relative;
+    position: relative;
+    justify-content: space-evenly;
+}
+
+article img {
+    max-width: 500px;
 }
 
 article ul {
