@@ -73,7 +73,7 @@ nav ul:nth-of-type(3) {
 
 #select_list a {
     font-weight: 350;
-    font-size: 20px;
+    font-size: 18px;
     transition: .3s;
 }
 
@@ -125,4 +125,11 @@ nav ul:nth-of-type(3) li:hover {
     transform:scale(1.1);
 }
 
+/* TITLES */
 
+h1 {
+    margin: 5% 0;
+    text-align: center;
+    font-size:38px;
+    font-weight: 600;
+}
