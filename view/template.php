@@ -18,7 +18,6 @@
 
         <!-- MAIN NAV -->
         <nav>
-
             <!-- LOGO -->
             <ul>
                 <li>
@@ -36,6 +35,25 @@
                         PRODUCTS
                         <i class="fa-solid fa-angle-down"></i>
                     </a>
+
+                    <!-- PRODUCTS SELECT MENU -->
+                    <ul id="select_list">
+                        <li>
+                            <a href="">All products</a>
+                        </li>
+                        <li>
+                            <a href="">Smartphones</a>
+                        </li>
+                        <li>
+                            <a href="">Accessories</a>
+                        </li>
+                        <li>
+                            <a href="">Smartwatches</a>
+                        </li>
+                        <li>
+                            <a href="">Bracelets/Watch cases</a>
+                        </li>
+                    </ul>
                 </li>
                 <li>
                     <a href="" class="hover-underline-animation">SALE</a>
@@ -61,27 +79,7 @@
                     <a href=""><i class="fa-solid fa-bag-shopping"></i> 3</a>
                 </li>
             </ul>
-        </nav>
 
-        <!-- PRODUCTS SELECT MENU -->
-        <nav>
-            <ul>
-                <li>
-                    <a href="">All products</a>
-                </li>
-                <li>
-                    <a href="">Smartphones</a>
-                </li>
-                <li>
-                    <a href="">Accessories</a>
-                </li>
-                <li>
-                    <a href="">Smartwatches</a>
-                </li>
-                <li>
-                    <a href="">Bracelets/Watch cases</a>
-                </li>
-            </ul>
         </nav>
 
     </header>
@@ -93,6 +91,9 @@
     <footer>
 
     </footer>
+
+    <script src="public/js/script.js"></script>
+    <script src="public/js/<?= $js ?>"></script>
 
 </body>
 
