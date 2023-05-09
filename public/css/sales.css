@@ -1,0 +1,35 @@
+h1 {
+    color:#E35353;
+}
+
+div li:last-of-type {
+    position:relative;
+
+}
+
+h2 {
+    color:#E35353;
+}
+
+.old_price {
+    font-weight: 100;
+    text-decoration: line-through;
+    opacity: 50%;
+    font-size: 16px;
+    position: absolute;
+    left: 120%;
+    bottom: 2px;
+}
+
+div ul {
+    position: relative;
+}
+
+ul p {
+    background-color: #E35353;
+    color:white;
+    padding: 4px 10px;
+    position: absolute;
+    left:0;
+    top:-30px;
+}
