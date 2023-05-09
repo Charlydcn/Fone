@@ -11,7 +11,7 @@ h2 {
     color:#E35353;
 }
 
-.old_price {
+.oldPrice {
     font-weight: 100;
     text-decoration: line-through;
     opacity: 50%;
