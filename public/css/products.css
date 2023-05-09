@@ -48,4 +48,5 @@ div li:first-of-type {
 div li:last-of-type {
     font-weight: 600;
     font-size: 20px;
+    position:relative;
 }
