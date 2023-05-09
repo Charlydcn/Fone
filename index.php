@@ -14,6 +14,8 @@ $ctrlHome = new homeController();
 $ctrlOrder = new orderController();
 $ctrlProduct = new productController();
 
+$id = (isset($_GET['id'])) ? $_GET['id'] : null;
+
 if (isset($_GET['action'])) {
     switch ($_GET['action']) {
 
@@ -56,6 +58,24 @@ if (isset($_GET['action'])) {
         case "sales":
 
             $ctrlProduct->displaySales();
+
+            break;
+
+        case "about":
+
+            $ctrlHome->displayAbout();
+
+            break;
+
+        case "contact":
+
+            $ctrlHome->displayContact();
+
+            break;
+
+        case "productDetails":
+
+            $ctrlProduct->productDetails($id);
 
             break;
     }
