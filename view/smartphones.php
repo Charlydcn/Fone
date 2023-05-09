@@ -12,6 +12,10 @@ $products = $sql->fetchAll();
 
     <?php
     foreach ($products as $product) {
+
+        $newPrice = $product['price'] * ((1 - ($product['sale']) / 100));
+        $newPrice = number_format($newPrice, 2);
+
     ?>
 
         <ul>
@@ -21,9 +25,23 @@ $products = $sql->fetchAll();
                     <h3><?= $product['name'] ?></h3>
             </a>
             </li>
-            <li>
-                <h2>$<?= $product['price'] ?></h2>
-            </li>
+
+            <?php
+            if ($product['sale'] > 0) {
+            ?>
+
+                <li>
+                    <span class="salePrice">$<?= $newPrice ?> </span>
+                    <span class='oldPrice'>$<?= $product['price'] ?></span>
+                </li>
+
+            <?php } else { ?>
+
+                <li>
+                    <h2>$<?= $product['price'] ?></h2>
+                </li>
+
+            <?php } ?>
         </ul>
 
     <?php } ?>

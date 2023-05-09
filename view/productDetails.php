@@ -5,6 +5,7 @@ ob_start();
 $product = $sql->fetch();
 
 $newPrice = $product['price'] * ((1 - ($product['sale']) / 100));
+$newPrice = number_format($newPrice, 2);
 
 ?>
 
