@@ -25,7 +25,7 @@ $products = $sql->fetchAll();
             </a>
             </li>
             <li>
-                <h2>$<?= $newPrice . "</h2><span class='old_price'>$" . $product['price'] ?></span>
+                <h2>$<?= $newPrice . "</h2><span class='oldPrice'>$" . $product['price'] ?></span>
             </li>
             <p>-<?= $product['sale'] ?>%</p>
         </ul>
