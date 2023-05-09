@@ -13,11 +13,32 @@ main {
     min-height:100svh;
 }
 
-/* NAV */
+/* TITLES */
 
-nav ul {
+h1 {
+    font-size:38px;
+    font-weight: 600;
+}
+
+h2 {
+    font-size: 22px;
+    font-weight: 600;
+}
+
+h3 {
+    font-size: 18px;
+    font-weight: 200;
+}
+
+ul {
     list-style-type: none;
 }
+
+a {
+    text-decoration: none;
+}
+
+/* NAV */
 
 nav a {
     text-decoration: none;
@@ -123,13 +144,4 @@ nav ul:nth-of-type(3) li {
 
 nav ul:nth-of-type(3) li:hover {
     transform:scale(1.1);
-}
-
-/* TITLES */
-
-h1 {
-    margin: 5% 0;
-    text-align: center;
-    font-size:38px;
-    font-weight: 600;
 }
