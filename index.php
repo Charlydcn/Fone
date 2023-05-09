@@ -22,5 +22,9 @@ if (isset($_GET['action'])) {
             $ctrlHome->displayHome();
 
             break;
+
+        case "allProducts":
+
+            $ctrlProduct->displayAllProducts();
     }
 }
