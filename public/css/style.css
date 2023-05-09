@@ -146,3 +146,20 @@ nav ul:nth-of-type(3) li {
 nav ul:nth-of-type(3) li:hover {
     transform:scale(1.1);
 }
+
+/* PRICES */
+
+.salePrice {
+    color:#E35353;
+    font-size: 24px;
+}
+
+.oldPrice {
+    font-weight: 100;
+    text-decoration: line-through;
+    opacity: 50%;
+    font-size: 16px;
+    position: absolute;
+    left: 120%;
+    bottom: 2px;
+}
