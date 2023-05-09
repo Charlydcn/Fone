@@ -40,5 +40,17 @@ if (isset($_GET['action'])) {
             $ctrlProduct->displaySmartwatches();
 
             break;
+
+        case "accessories":
+
+            $ctrlProduct->displayAccessories();
+
+            break;
+
+        case "watchAccessories":
+
+            $ctrlProduct->displayWatchAccessories();
+
+            break;
     }
 }
