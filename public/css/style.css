@@ -90,6 +90,7 @@ nav ul:nth-of-type(3) {
     background-color: white;
     padding:10px;
     position:absolute;
+    z-index: 1;
 }
 
 #select_list a {
