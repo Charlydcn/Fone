@@ -14,9 +14,15 @@ $products = $sql->fetchAll();
     ?>
 
         <ul>
-            <img src="public/img/<?= $product['category'] . "/" . $product['img'] ?>" alt="<?= $product['name'] ?> image">
-            <li><?= $product['name'] ?></li>
-            <li>$<?= $product['price'] ?></li>
+            <a href="">
+                <img src="public/img/<?= $product['category'] . "/" . $product['img'] ?>" alt="<?= $product['name'] ?> image">
+                <li>
+                    <h3><?= $product['name'] ?></h3>
+            </a>
+            </li>
+            <li>
+                <h2>$<?= $product['price'] ?></h2>
+            </li>
         </ul>
 
     <?php } ?>
@@ -28,7 +34,7 @@ $products = $sql->fetchAll();
 $content = ob_get_clean();
 $title = "All products";
 $secondTitle = "All products";
-$css = "allProducts.css";
+$css = "products.css";
 $js = "";
 require 'template.php';
 
