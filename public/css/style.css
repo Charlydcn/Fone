@@ -19,9 +19,14 @@ nav ul {
     list-style-type: none;
 }
 
+nav a {
+    text-decoration: none;
+    color:black;
+}
+
 /* 1ST NAV (MAIN) */
 
-nav:first-of-type {
+nav {
     display: flex;
     flex-direction: row;
     margin:5%;
@@ -29,50 +34,47 @@ nav:first-of-type {
     align-items: center;
 }
 
-nav:first-of-type ul li a {
-    text-decoration: none;
-    color: black;
-    font-size: 20px;
-}
-
 /* LOGO */
-nav:first-of-type ul:first-of-type li a {
+nav ul:first-of-type li a {
     font-size: 48px;
 }
 
 /* LINKS */
-nav:first-of-type ul:nth-of-type(2) {
+nav ul:nth-of-type(2) {
     display: flex;
     gap:3rem;
 }
 
-/* ICONS */
-nav:first-of-type ul:nth-of-type(3) {
+nav ul:nth-of-type(2) li a {
+    font-size: 20px;
+}
+
+/* products */
+nav ul:nth-of-type(2) li:nth-of-type(2) {
+    position:relative;
+}
+
+/* BUTTONS */
+nav ul:nth-of-type(3) {
     display:flex;
     gap:1.5rem;
 }
 
-/* 2ND NAV (PRODUCTS SELECT LIST) */
+/* PRODUCTS SELECT LIST */
 
-nav:nth-of-type(2) {
+#select_list {
     display:none;
-    background-color: white;
-    width: 15%;
-    padding:10px;
-}
-
-nav:nth-of-type(2) a {
-    text-decoration: none;
-    font-weight: 350;
-    font-size: 20px;
-    color:black;
-    transition: .3s;
-}
-
-nav:nth-of-type(2) ul {
-    display: flex;
     gap: 15px;
     flex-direction: column;
+    background-color: white;
+    padding:10px;
+    position:absolute;
+}
+
+#select_list a {
+    font-weight: 350;
+    font-size: 20px;
+    transition: .3s;
 }
 
 /* HOVER */
@@ -110,16 +112,16 @@ nav:nth-of-type(2) ul {
 
 /* HOVER PRODUCT SELECT LIST */
 
-nav:nth-of-type(2) a:hover {
+nav ul:last-of-type a:hover {
     opacity: 80%;
 }
 
 /* HOVER LOGOS */
-nav:first-of-type ul:nth-of-type(3) li {
+nav ul:nth-of-type(3) li {
     transition:.3s;
 }
 
-nav:first-of-type ul:nth-of-type(3) li:hover {
+nav ul:nth-of-type(3) li:hover {
     transform:scale(1.1);
 }
 
