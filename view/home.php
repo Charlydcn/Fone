@@ -9,7 +9,7 @@ ob_start();
     <div>
         <h1>Find what's best for you</h1>
 
-        <a href="index.php?action=home">SHOP NOW</a>
+        <a href="index.php?action=allProducts">SHOP NOW</a>
     </div>
 
     <figure>
