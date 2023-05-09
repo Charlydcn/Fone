@@ -24,13 +24,13 @@ CREATE TABLE IF NOT EXISTS `category` (
   `id_category` int NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,
   PRIMARY KEY (`id_category`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Listage des données de la table fone.category : ~0 rows (environ)
+-- Listage des données de la table fone.category : ~4 rows (environ)
 INSERT INTO `category` (`id_category`, `name`) VALUES
 	(1, 'smartphones'),
-	(2, 'accessories'),
-	(3, 'smartwatches'),
+	(2, 'smartwatches'),
+	(3, 'accessories'),
 	(4, 'watchAccessories');
 
 -- Listage de la structure de table fone. commande
@@ -78,13 +78,41 @@ CREATE TABLE IF NOT EXISTS `product` (
   `name` varchar(100) NOT NULL,
   `price` decimal(7,2) NOT NULL,
   `sale` int DEFAULT NULL,
-  `id_category` int NOT NULL,
+  `img` varchar(255) DEFAULT NULL,
+  `id_category` int DEFAULT NULL,
   PRIMARY KEY (`id_product`),
   KEY `id_category` (`id_category`),
-  CONSTRAINT `product_ibfk_1` FOREIGN KEY (`id_category`) REFERENCES `category` (`id_category`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  CONSTRAINT `product_ibfk_1` FOREIGN KEY (`id_category`) REFERENCES `category` (`id_category`) ON DELETE SET NULL ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Listage des données de la table fone.product : ~0 rows (environ)
+-- Listage des données de la table fone.product : ~26 rows (environ)
+INSERT INTO `product` (`id_product`, `name`, `price`, `sale`, `img`, `id_category`) VALUES
+	(1, 'Apple iPhone 13', 1159.00, 20, 'iphone13.png', 1),
+	(2, 'Huawei P40 Pro', 1059.00, NULL, 'iphone13.png', 1),
+	(3, 'Samsung S22 Ultra', 1059.00, NULL, 'iphone13.png', 1),
+	(4, 'OnePlus 8 Pro', 749.00, NULL, 'iphone13.png', 1),
+	(5, 'Apple iPhone 13 Mini', 809.00, NULL, 'iphone13.png', 1),
+	(6, 'Samsung Galaxy Z-Fold', 999.00, NULL, 'iphone13.png', 1),
+	(7, 'Huawei P60 Pro', 859.00, NULL, 'iphone13.png', 1),
+	(8, 'Samsung Galaxy Z-Flip', 1169.00, NULL, 'iphone13.png', 1),
+	(9, 'Apple Watch Series 7', 650.00, NULL, 'apple_watch_series7.png', 2),
+	(10, 'Samsung Galaxy Watch 4 Classic', 380.00, NULL, 'apple_watch_series7.png', 2),
+	(11, 'Garmin Venu 2', 400.00, NULL, 'apple_watch_series7.png', 2),
+	(12, 'USB-C Power Adapter', 24.90, NULL, 'usbC_power_adapter18.png', 3),
+	(13, 'Dual USB Power Adapter', 29.00, NULL, 'usbC_power_adapter18.png', 3),
+	(14, 'iPhone 13 Thin Case', 15.00, NULL, 'iphone13_thincase.png', 3),
+	(15, 'S22 Ultra Silicone Case', 12.50, NULL, 'iphone13_thincase.png', 3),
+	(16, 'Huawei P40 Pro Leather Case', 39.90, NULL, 'iphone13_thincase.png', 3),
+	(17, 'Galaxy Z Fold Silicone Case', 29.90, NULL, 'iphone13_thincase.png', 3),
+	(18, 'Huawei P60 Pro Stand Case', 39.90, NULL, 'iphone13_thincase.png', 3),
+	(19, 'Galaxy Z Flip Transparent Case', 14.90, NULL, 'iphone13_thincase.png', 3),
+	(20, 'External Battery', 59.90, NULL, 'extbattery.png', 3),
+	(21, 'External Battery', 29.90, NULL, 'extbattery.png', 3),
+	(22, 'Apple Watch Sport Loop', 29.00, NULL, 'applewatch_sportloop.png', 4),
+	(23, 'Samsung Leather Band', 25.00, NULL, 'applewatch_sportloop.png', 4),
+	(24, 'Garmin QuickFit Band', 15.00, NULL, 'applewatch_sportloop.png', 4),
+	(25, 'Apple Watch Series 7 Protective Case', 49.00, NULL, 'applewatch_sportloop.png', 4),
+	(26, 'Samsung Galaxy Watch 4 Black Case', 39.90, NULL, 'applewatch_sportloop.png', 4);
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
