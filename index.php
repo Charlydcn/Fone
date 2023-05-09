@@ -26,5 +26,19 @@ if (isset($_GET['action'])) {
         case "allProducts":
 
             $ctrlProduct->displayAllProducts();
+
+            break;
+
+        case "smartphones":
+
+            $ctrlProduct->displaySmartphones();
+
+            break;
+
+        case "smartwatches":
+
+            $ctrlProduct->displaySmartwatches();
+
+            break;
     }
 }
