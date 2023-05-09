@@ -14,7 +14,7 @@ $products = $sql->fetchAll();
     ?>
 
         <ul>
-            <a href="">
+            <a href="index.php?action=productDetails&id=<?= $product['id_product'] ?>">
                 <img src="public/img/<?= $product['category'] . "/" . $product['img'] ?>" alt="<?= $product['name'] ?> image">
                 <li>
                     <h3><?= $product['name'] ?></h3>
