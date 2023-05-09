@@ -105,4 +105,20 @@ class productController
 
         require 'view/sales.php';
     }
+
+    function productDetails($id)
+    {
+        $pdo = Connect::dbConnect();
+
+        $sql = $pdo->prepare(
+            "SELECT id_product, description, product.name AS 'name', price, sale, img, product.id_category, category.name AS 'category'
+            FROM product
+            INNER JOIN category ON product.id_category = category.id_category
+            WHERE id_product = :id"
+        );
+
+        $sql->execute(["id" => $id]);
+
+        require 'view/productDetails.php';
+    }
 }
