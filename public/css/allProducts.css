@@ -1,0 +1,38 @@
+div {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 1rem auto;
+    gap: 5%;
+    width: 90%;
+    justify-content: center;
+    align-items: center;
+}
+
+div img {
+    max-width:240px;
+}
+
+div ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    margin: 1.5rem 0;
+    max-width:240px;
+}
+
+div li {
+    text-align: center;
+}
+
+div li:first-of-type {
+    margin-bottom: 10px;
+    font-weight: 350;
+    font-size: 18px;
+}
+
+div li:last-of-type {
+    font-weight: 600;
+    font-size: 20px;
+}
