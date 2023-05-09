@@ -51,7 +51,7 @@
                             <a href="index.php?action=accessories">Accessories</a>
                         </li>
                         <li>
-                            <a href="index.php?action=watchaccessories">Bracelets/Watch cases</a>
+                            <a href="index.php?action=watchAccessories">Bracelets/Watch cases</a>
                         </li>
                     </ul>
                 </li>
