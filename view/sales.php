@@ -6,36 +6,32 @@ $products = $sql->fetchAll();
 
 ?>
 
-<div id="sales">
-    <h1>Sales</h1>
+<h1>Sales</h1>
 
-    <div>
+<div>
 
-        <?php
-        foreach ($products as $product) {
+    <?php
+    foreach ($products as $product) {
 
-            // $newPrice = $product['price'] * (1 - ($product['sale']));
+        $newPrice = $product['price'] * ((1 - ($product['sale']) / 100));
 
-        ?>
+    ?>
 
-            <ul>
-                <a href="">
-                    <img src="public/img/<?= $product['category'] . "/" . $product['img'] ?>" alt="<?= $product['name'] ?> image">
-                    <li>
-                        <h3><?= $product['name'] ?></h3>
-                </a>
-                </li>
+        <ul>
+            <a href="">
+                <img src="public/img/<?= $product['category'] . "/" . $product['img'] ?>" alt="<?= $product['name'] ?> image">
                 <li>
-                    <h2>$<?= $product['price'] ?></h2>
-                </li>
-                <li>
-                    <?= $newPrice ?>
-                </li>
-            </ul>
+                    <h3><?= $product['name'] ?></h3>
+            </a>
+            </li>
+            <li>
+                <h2>$<?= $newPrice . "</h2><span class='old_price'>$" . $product['price'] ?></span>
+            </li>
+            <p>-<?= $product['sale'] ?>%</p>
+        </ul>
 
-        <?php } ?>
+    <?php } ?>
 
-    </div>
 </div>
 
 
@@ -45,6 +41,7 @@ $content = ob_get_clean();
 $title = "Sales";
 $secondTitle = "Sales";
 $css = "products.css";
+$css2 = "sales.css";
 $js = "";
 require 'template.php';
 
