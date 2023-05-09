@@ -24,6 +24,7 @@ $content = ob_get_clean();
 $title = "Home";
 $secondTitle = "Home";
 $css = "home.css";
+$js = "home.js";
 require 'template.php';
 
 ?>
