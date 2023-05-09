@@ -55,4 +55,40 @@ class productController
 
         require 'view/smartwatches.php';
     }
+
+    function displayAccessories()
+    {
+        $pdo = Connect::dbConnect();
+
+        $sql = $pdo->query(
+            "SELECT id_product, product.name AS 'name', price, sale, img, product.id_category, category.name AS 'category'
+            FROM product
+            INNER JOIN category ON product.id_category = category.id_category
+            WHERE product.id_category = (
+                SELECT id_category
+                FROM category
+                WHERE NAME = 'accessories'
+                )"
+        );
+
+        require 'view/smartwatches.php';
+    }
+
+    function displayWatchAccessories()
+    {
+        $pdo = Connect::dbConnect();
+
+        $sql = $pdo->query(
+            "SELECT id_product, product.name AS 'name', price, sale, img, product.id_category, category.name AS 'category'
+            FROM product
+            INNER JOIN category ON product.id_category = category.id_category
+            WHERE product.id_category = (
+                SELECT id_category
+                FROM category
+                WHERE NAME = 'watchAccessories'
+                )"
+        );
+
+        require 'view/watchAccessories.php';
+    }
 }
