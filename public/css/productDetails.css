@@ -35,13 +35,13 @@ h2 {
     color:#E35353;
 }
 
-article ul li:nth-of-type(2) p:first-of-type {
+article img ~ p {
     background-color: #E35353;
     color:white;
     padding: 4px 10px;
     position: absolute;
-    left:0;
-    top:-20px;
+    left:5%;
+    top:0;
 }
 
 .salePrice {
@@ -53,6 +53,7 @@ article ul li:nth-of-type(2) p:first-of-type {
     text-decoration: line-through;
     opacity: 50%;
     font-size: 22px;
+    position:unset;
 }
 
 /* DESCRIPTION */
