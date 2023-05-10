@@ -11,16 +11,17 @@ $newPrice = number_format($newPrice, 2);
 
 <article>
     <img src="public/img/<?= $product['category'] . "/" . $product['img'] ?>" alt="<?= $product['name'] ?> photo">
+
+    <p>-<?= $product['sale'] ?>%</p>
+
     <ul>
         <li><?= $product['name'] ?></li>
 
         <?php
         if ($product['sale'] > 0) {
         ?>
-
             <li>
                 <span class="oldPrice">$<?= $product['price'] . "</span><h2>$" . $newPrice ?></h2>
-                    <p>-<?= $product['sale'] ?>%</p>
             </li>
 
 
@@ -35,11 +36,11 @@ $newPrice = number_format($newPrice, 2);
         <li><?= $product['description'] ?></li>
         <li>Quantity :</li>
         <div>
-            <input type="button" id="add" value="-">
-            <p id="qtt">0</p>
-            <input type="button" id="remove" value="+">
+            <input type="button" class="remove" value="-">
+            <p class="qtt">0</p>
+            <input type="button" class="add" value="+">
         </div>
-        <a href="">
+        <a href="index.php?action=addToBasket&id=<?= $product['id_product'] ?>">
             <i class="fa-solid fa-bag-shopping"></i>
             ADD TO CART
         </a>
