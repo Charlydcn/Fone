@@ -1,0 +1,63 @@
+table {
+    width:80%;
+    margin:auto;
+}
+
+table img {
+    max-width: 100px;
+}
+
+th {
+    text-align: start;
+}
+
+thead {
+    height:50px;
+}
+
+.line {
+    height:0.5px;
+    background-color: rgb(0,0,0, 0.1);
+}
+
+tbody td {
+    height:150px;
+}
+
+tbody td:first-of-type {
+    width:115px;
+}
+
+tbody div:first-of-type {
+    display: flex;
+    background-color: white;
+    width: 100px;
+    height: 30px;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+tbody div:first-of-type input {
+    font-size: 22px;
+    border: none;
+    border-radius: 50%;
+    background:none;
+    width: 22px;
+    cursor: pointer;
+    transition: .3s;
+}
+
+tbody div:first-of-type input:hover {
+    background:rgb(0,0,0, 0.1);
+}
+
+tbody a i {
+    color:black;
+    transition:.3s;
+}
+
+tbody a:hover i {
+    color:rgb(176, 56, 56);
+    transform: scale(1.1);
+}
