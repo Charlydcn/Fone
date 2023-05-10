@@ -6,7 +6,6 @@ $products = $sql->fetchAll();
 ?>
 
 <h1>All products</h1>
-
 <div>
 
     <?php
