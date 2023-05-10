@@ -1,21 +1,22 @@
-// Récupération des éléments HTML
-var removeBtn = document.getElementById("add");
-var qtt = document.getElementById("qtt");
-var addBtn = document.getElementById("remove");
+// Sélectionner tous les éléments de compteur sur la page
+var counters = document.querySelectorAll("div");
 
-// Variable pour stocker la quantité
-var quantite = 0;
+// Parcourir tous les compteurs et attacher les gestionnaires d'événements
+counters.forEach(function(counter) {
+  var removeBtn = counter.querySelector(".remove");
+  var addBtn = counter.querySelector(".add");
+  var qtt = counter.querySelector(".qtt");
+  var quantite = 0;
 
-// Gestionnaire d'événement pour le bouton de décrémentation
-removeBtn.addEventListener("click", function() {
-  if (quantite > 0) {
-    quantite--;
+  removeBtn.addEventListener("click", function() {
+    if (quantite > 0) {
+      quantite--;
+      qtt.textContent = quantite;
+    }
+  });
+
+  addBtn.addEventListener("click", function() {
+    quantite++;
     qtt.textContent = quantite;
-  }
-});
-
-// Gestionnaire d'événement pour le bouton d'incrémentation
-addBtn.addEventListener("click", function() {
-  quantite++;
-  qtt.textContent = quantite;
+  });
 });
