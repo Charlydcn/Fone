@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 use Controller\basketController;
 use Controller\homeController;
 use Controller\orderController;
@@ -76,6 +78,18 @@ if (isset($_GET['action'])) {
         case "productDetails":
 
             $ctrlProduct->productDetails($id);
+
+            break;
+
+        case "basket":
+
+            $ctrlBasket->displayBasket();
+
+            break;
+
+        case "addToBasket":
+
+            $ctrlBasket->addToBasket($id);
 
             break;
     }
