@@ -15,10 +15,16 @@ div {
 
 div img {
     max-width:240px;
+    max-height:240px;
+    transition: .3s;
 }
 
 div a {
     color:black;
+}
+
+div a:hover img {
+    transform: scale(1.025);
 }
 
 div h3 {
