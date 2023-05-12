@@ -39,6 +39,10 @@ textarea {
 	min-height: 25px;
 }
 
+textarea {
+	padding: 5px;
+}
+
 fieldset select {
 	width: 50%;
 	height: 25px;
@@ -92,4 +96,17 @@ input[type="submit"]:hover {
 
 #adminMenu div a:hover {
 	opacity: 80%;
+}
+
+h1 ~ select {
+	height: 30px;
+}
+
+h1 ~ select,
+h1 ~ select option {
+	font-size: 18px;
+}
+
+fieldset img {
+	max-width: 300px;
 }
