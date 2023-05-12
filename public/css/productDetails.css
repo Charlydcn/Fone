@@ -1,116 +1,113 @@
 /* ARTICLE */
 article {
-    display: flex;
-    flex-direction: row;
-    width: 90%;
-    margin: auto;
-    position: relative;
-    justify-content: space-evenly;
+	display: flex;
+	flex-direction: row;
+	width: 90%;
+	margin: auto;
+	position: relative;
+	justify-content: space-evenly;
 }
 
 article img {
-    max-width: 500px;
+	max-width: 500px;
 }
 
 article ul {
-    display: flex;
-    flex-direction: column;
-    gap:2rem;
-    width:40%;
+	display: flex;
+	flex-direction: column;
+	gap: 2rem;
+	width: 40%;
 }
 
 /* NAME */
 article li:first-of-type {
-    font-size: 42px;
-    font-weight: 600;
+	font-size: 42px;
+	font-weight: 600;
 }
 
 /* PRICE */
-h2, .price {
-    font-size: 38px;
-    font-weight: 500;
+h2,
+.price {
+	font-size: 38px;
+	font-weight: 500;
 }
 
 h2 {
-    color:#E35353;
+	color: #e35353;
 }
 
-article img ~ p {
-    background-color: #E35353;
-    color:white;
-    padding: 4px 10px;
-    position: absolute;
-    left:5%;
-    top:0;
+.salePercentage {
+	left: 5%;
+	top: 0;
 }
 
 .salePrice {
-    color:#E35353;
+	color: #e35353;
 }
 
 .oldPrice {
-    font-weight: 100;
-    text-decoration: line-through;
-    opacity: 50%;
-    font-size: 22px;
-    position:unset;
+	font-weight: 100;
+	text-decoration: line-through;
+	opacity: 50%;
+	font-size: 22px;
+	position: unset;
 }
 
 /* DESCRIPTION */
 article li:nth-of-type(3) {
-    opacity: 66%;    
+	opacity: 66%;
 }
 
 /* QTT COUNTER */
 article ul div:first-of-type {
-    display: flex;
-    background-color: white;
-    width: 150px;
-    height: 30px;
-    justify-content: space-around;
-    align-items: center;
-    flex-wrap: wrap;
+	display: flex;
+	background-color: white;
+	width: 150px;
+	height: 30px;
+	justify-content: space-around;
+	align-items: center;
+	flex-wrap: wrap;
 }
 
 /* COUNTER BTNS */
 article ul div:first-of-type input {
-    background-color: white;
-    font-size: 22px;
-    border:none;
-    border-radius: 50%;
-    width:22px;
-    cursor:pointer;
-    transition: .3s;
+	background-color: white;
+	font-size: 22px;
+	border: none;
+	border-radius: 50%;
+	width: 22px;
+	cursor: pointer;
+	transition: 0.3s;
 }
 
 article ul div:first-of-type input:hover {
-    background-color: rgba(0, 0, 0, 0.10);
+	background-color: rgba(0, 0, 0, 0.1);
 }
 
 /* ADD TO CART BTN */
 article a:first-of-type {
-    background-color: #483a30;
-    color:white;
-    height:40px;
-    display: flex;
-    gap:10px;
-    border-radius: 2px;
-    align-items: center;
-    justify-content: center;
-    transition: .3s;
+	background-color: #483a30;
+	color: white;
+	height: 40px;
+	display: flex;
+	gap: 10px;
+	border-radius: 2px;
+	align-items: center;
+	justify-content: center;
+	transition: 0.3s;
 }
 
 article a:first-of-type:hover {
-    opacity:80%;
+	opacity: 80%;
 }
 
 /* ADD TO WISHLIST BTN */
 article a:last-of-type {
-    color:black;
-    width:fit-content;
-    transition:.3s;
+	color: black;
+	width: fit-content;
+	transition: 0.3s;
 }
 
 article a:last-of-type:hover {
-    translate:5px;
+	translate: 5px;
 }
