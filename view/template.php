@@ -68,10 +68,10 @@
                     <a href="index.php?action=sales" class="hover-underline-animation">SALE</a>
                 </li>
                 <li>
-                    <a href="index.php?action=about" class="hover-underline-animation">ABOUT</a>
-                </li>
-                <li>
                     <a href="index.php?action=contact" class="hover-underline-animation">CONTACT</a>
+                </li>                
+                <li>
+                    <a href="index.php?action=admin" class="hover-underline-animation">ADMIN</a>
                 </li>
             </ul>
 
