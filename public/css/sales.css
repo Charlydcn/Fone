@@ -4,18 +4,13 @@ h1 {
 
 div li:last-of-type {
     position:relative;
-
 }
 
 div ul {
     position: relative;
 }
 
-ul p {
-    background-color: #E35353;
-    color:white;
-    padding: 4px 10px;
-    position: absolute;
+.salePercentage {
     left:0;
     top:-15px;
 }
