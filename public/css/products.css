@@ -3,7 +3,7 @@ h1 {
 	text-align: center;
 }
 
-div {
+h1 ~ div {
 	display: flex;
 	flex-wrap: wrap;
 	margin: 1rem auto;
@@ -66,4 +66,5 @@ div li:last-of-type {
 	color: white;
 	padding: 4px 10px;
 	position: absolute;
+	left: 0;
 }
