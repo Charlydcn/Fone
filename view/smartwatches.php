@@ -33,6 +33,7 @@ $products = $sql->fetchAll();
                     <span class="salePrice">$<?= $newPrice ?> </span>
                     <span class='oldPrice'>$<?= $product['price'] ?></span>
                 </li>
+                <p class="salePercentage">-<?= $product['sale'] ?>%</p>
 
             <?php } else { ?>
 

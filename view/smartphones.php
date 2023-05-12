@@ -18,7 +18,7 @@ $products = $sql->fetchAll();
 
     ?>
 
-        <ul>
+        <ul>    
             <a href="index.php?action=productDetails&id=<?= $product['id_product'] ?>">
                 <img src="public/img/<?= $product['category'] . "/" . $product['img'] ?>" alt="<?= $product['name'] ?> image">
                 <li>
@@ -34,6 +34,7 @@ $products = $sql->fetchAll();
                     <span class="salePrice">$<?= $newPrice ?> </span>
                     <span class='oldPrice'>$<?= $product['price'] ?></span>
                 </li>
+                <p class="salePercentage">-<?= $product['sale'] ?>%</p>
 
             <?php } else { ?>
 
