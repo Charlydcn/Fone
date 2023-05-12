@@ -63,6 +63,7 @@ $content = ob_get_clean();
 $title = "Product details";
 $secondTitle = "Product details";
 $css = "productDetails.css";
+$css2 = "products.css";
 $js = "productDetails.js";
 require 'template.php';
 
