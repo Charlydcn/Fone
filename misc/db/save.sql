@@ -16,7 +16,7 @@
 
 
 -- Listage de la structure de la base pour fone
-CREATE DATABASE IF NOT EXISTS `fone` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+CREATE DATABASE IF NOT EXISTS `fone` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
 USE `fone`;
 
 -- Listage de la structure de table fone. category
@@ -24,7 +24,7 @@ CREATE TABLE IF NOT EXISTS `category` (
   `id_category` int NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,
   PRIMARY KEY (`id_category`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Listage des données de la table fone.category : ~4 rows (environ)
 INSERT INTO `category` (`id_category`, `name`) VALUES
@@ -38,7 +38,8 @@ CREATE TABLE IF NOT EXISTS `commande` (
   `id_commande` int NOT NULL AUTO_INCREMENT,
   `dateCommande` date NOT NULL,
   PRIMARY KEY (`id_commande`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
 
 -- Listage des données de la table fone.commande : ~0 rows (environ)
 
@@ -51,7 +52,8 @@ CREATE TABLE IF NOT EXISTS `contenir` (
   KEY `id_commande` (`id_commande`),
   CONSTRAINT `contenir_ibfk_1` FOREIGN KEY (`id_product`) REFERENCES `product` (`id_product`),
   CONSTRAINT `contenir_ibfk_2` FOREIGN KEY (`id_commande`) REFERENCES `commande` (`id_commande`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
 
 -- Listage des données de la table fone.contenir : ~0 rows (environ)
 
@@ -60,7 +62,8 @@ CREATE TABLE IF NOT EXISTS `email` (
   `id_email` int NOT NULL AUTO_INCREMENT,
   `mail` varchar(75) NOT NULL,
   PRIMARY KEY (`id_email`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
 
 -- Listage des données de la table fone.email : ~0 rows (environ)
 
@@ -68,7 +71,8 @@ CREATE TABLE IF NOT EXISTS `email` (
 CREATE TABLE IF NOT EXISTS `order` (
   `id_order` int NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`id_order`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
 
 -- Listage des données de la table fone.order : ~0 rows (environ)
 
@@ -84,7 +88,7 @@ CREATE TABLE IF NOT EXISTS `product` (
   PRIMARY KEY (`id_product`),
   KEY `id_category` (`id_category`),
   CONSTRAINT `product_ibfk_1` FOREIGN KEY (`id_category`) REFERENCES `category` (`id_category`) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Listage des données de la table fone.product : ~26 rows (environ)
 INSERT INTO `product` (`id_product`, `name`, `price`, `sale`, `description`, `img`, `id_category`) VALUES

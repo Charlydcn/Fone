@@ -1,102 +1,102 @@
 * {
-    font-family: 'Josefin Sans', sans-serif;
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+	font-family: "Josefin Sans", sans-serif;
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
 }
 
 html {
-    background-color: #EFEAE6;
+	background-color: #efeae6;
 }
 
 main {
-    min-height:100svh;
+	min-height: 100svh;
 }
 
 /* TITLES */
 
 h1 {
-    font-size:38px;
-    font-weight: 600;
+	font-size: 38px;
+	font-weight: 600;
 }
 
 h2 {
-    font-size: 22px;
-    font-weight: 600;
+	font-size: 22px;
+	font-weight: 600;
 }
 
 h3 {
-    font-size: 18px;
-    font-weight: 200;
+	font-size: 18px;
+	font-weight: 200;
 }
 
 ul {
-    list-style-type: none;
+	list-style-type: none;
 }
 
 a {
-    text-decoration: none;
+	text-decoration: none;
 }
 
 /* NAV */
 
 nav a {
-    text-decoration: none;
-    color:black;
+	text-decoration: none;
+	color: black;
 }
 
 /* 1ST NAV (MAIN) */
 
 nav {
-    display: flex;
-    flex-direction: row;
-    margin:5%;
-    justify-content: space-between;
-    align-items: center;
+	display: flex;
+	flex-direction: row;
+	margin: 5%;
+	justify-content: space-between;
+	align-items: center;
 }
 
 /* LOGO */
 nav ul:first-of-type li a {
-    font-size: 48px;
+	font-size: 48px;
 }
 
 /* LINKS */
 nav ul:nth-of-type(2) {
-    display: flex;
-    gap:3rem;
+	display: flex;
+	gap: 3rem;
 }
 
 nav ul:nth-of-type(2) li a {
-    font-size: 20px;
+	font-size: 20px;
 }
 
 /* products */
 nav ul:nth-of-type(2) li:nth-of-type(2) {
-    position:relative;
+	position: relative;
 }
 
 /* BUTTONS */
 nav ul:nth-of-type(3) {
-    display:flex;
-    gap:1.5rem;
+	display: flex;
+	gap: 1.5rem;
 }
 
 /* PRODUCTS SELECT LIST */
 
 #select_list {
-    display:none;
-    gap: 15px;
-    flex-direction: column;
-    background-color: white;
-    padding:10px;
-    position:absolute;
-    z-index: 1;
+	display: none;
+	gap: 15px;
+	flex-direction: column;
+	background-color: white;
+	padding: 10px;
+	position: absolute;
+	z-index: 1;
 }
 
 #select_list a {
-    font-weight: 350;
-    font-size: 18px;
-    transition: .3s;
+	font-weight: 350;
+	font-size: 18px;
+	transition: 0.3s;
 }
 
 /* HOVER */
@@ -104,62 +104,84 @@ nav ul:nth-of-type(3) {
 /* HOVER MAIN */
 
 /* UNDERLINE ON LINKS */
-.w3rcontainer{
-   border: 1px solid #cccfdb;
-   border-radius: 2px;
-} 
+.w3rcontainer {
+	border: 1px solid #cccfdb;
+	border-radius: 2px;
+}
 .hover-underline-animation {
-  display: inline-block;
-  position: relative;
-  color: #000000;
+	display: inline-block;
+	position: relative;
+	color: #000000;
 }
 
 .hover-underline-animation:after {
-  content: '';
-  position: absolute;
-  width: 100%;
-  transform: scaleX(0);
-  height: 1px;
-  bottom: 0;
-  left: 0;
-  background-color: #000000;
-  transform-origin: bottom right;
-  transition: transform 0.25s ease-out;
+	content: "";
+	position: absolute;
+	width: 100%;
+	transform: scaleX(0);
+	height: 1px;
+	bottom: 0;
+	left: 0;
+	background-color: #000000;
+	transform-origin: bottom right;
+	transition: transform 0.25s ease-out;
 }
 
 .hover-underline-animation:hover:after {
-  transform: scaleX(1);
-  transform-origin: bottom left;
+	transform: scaleX(1);
+	transform-origin: bottom left;
 }
 
 /* HOVER PRODUCT SELECT LIST */
 
 nav ul:last-of-type a:hover {
-    opacity: 80%;
+	opacity: 80%;
 }
 
 /* HOVER LOGOS */
 nav ul:nth-of-type(3) li {
-    transition:.3s;
+	transition: 0.3s;
 }
 
 nav ul:nth-of-type(3) li:hover {
-    transform:scale(1.1);
+	transform: scale(1.1);
 }
 
 /* PRICES */
 
 .salePrice {
-    color:#E35353;
-    font-size: 24px;
+	color: #e35353;
+	font-size: 24px;
 }
 
 .oldPrice {
-    font-weight: 100;
-    text-decoration: line-through;
-    opacity: 50%;
-    font-size: 16px;
-    position: absolute;
-    left: 120%;
-    bottom: 2px;
+	font-weight: 100;
+	text-decoration: line-through;
+	opacity: 50%;
+	font-size: 16px;
+	position: absolute;
+	left: 120%;
+	bottom: 2px;
+}
+
+.successMsg {
+	color: #155724;
+	background-color: #d4edda;
+	font-size: 18px;
+	border-color: #c3e6cb;
+	padding: 0.75rem 1.25rem;
+	margin-bottom: 1rem;
+	border: 1px solid transparent;
+	border-radius: 0.25rem;
+}
+
+.errorMsg {
+	color: #721c24;
+	background-color: #f8d7da;
+	border-color: #f5c6cb;
+	font-size: 18px;
+	padding: 0.75rem 1.25rem;
+	margin-bottom: 1rem;
+	border: 1px solid transparent;
+	border-radius: 0.25rem;
 }

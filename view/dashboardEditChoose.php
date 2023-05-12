@@ -4,7 +4,7 @@ ob_start();
 
 ?>
 
-<h1>All products</h1>
+<h1>Choose product to edit</h1>
 <div>
 
     <?php
@@ -16,7 +16,7 @@ ob_start();
     ?>
 
         <ul>
-            <a href="index.php?action=productDetails&id=<?= $product['id_product'] ?>">
+            <a href="index.php?action=getEditDashboard&id=<?= $product['id_product'] ?>">
                 <img src="public/img/<?= $product['category'] . "/" . $product['img'] ?>" alt="<?= $product['name'] ?> image">
                 <li>
                     <h3><?= $product['name'] ?></h3>
@@ -49,10 +49,10 @@ ob_start();
 <?php
 
 $content = ob_get_clean();
-$title = "All products";
-$secondTitle = "All products";
-$css = "products.css";
-$js = "";
+$title = "Choose product to edit";
+$secondTitle = "Choose product to edit";
+$css = "admin.css";
+$css2 = "products.css";
 require 'template.php';
 
 ?>
