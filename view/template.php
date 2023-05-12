@@ -85,7 +85,17 @@
                 </li>
 
                 <li>
-                    <a href="index.php?action=basket"><i class="fa-solid fa-bag-shopping"></i> <?= count($_SESSION['basket']) ?></a>
+                    <a href="index.php?action=basket">
+                        <i class="fa-solid fa-bag-shopping"></i>
+                        <?php
+                        if(isset($_SESSION['products'])) {
+                            echo count($_SESSION['products']);
+
+                        } else { 
+                            echo "0";                           
+                        }
+                        ?>
+                    </a>
                 </li>
             </ul>
 
