@@ -59,3 +59,37 @@ input[type="submit"] {
 input[type="submit"]:hover {
 	translate: 5px;
 }
+
+#adminMenu {
+	height: 500px;
+	width: 85%;
+	margin: auto;
+	gap: 10%;
+	background-color: #fff;
+	padding: 5%;
+	display: flex;
+	align-items: flex-start;
+	justify-content: flex-start;
+	flex-direction: column;
+}
+
+#adminMenu h1 ~ div {
+	display: flex;
+	flex-direction: row;
+	gap: 1rem;
+	flex-wrap: wrap;
+}
+
+#adminMenu a {
+	background-color: #565656;
+	color: white;
+	text-decoration: none;
+	padding: 10px 20px;
+	border-radius: 2px;
+	font-size: 18px;
+	transition: 0.3s;
+}
+
+#adminMenu div a:hover {
+	opacity: 80%;
+}
