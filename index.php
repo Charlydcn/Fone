@@ -95,16 +95,24 @@ if (isset($_GET['action'])) {
 
             break;
 
+        case "admin":
+
+            $ctrlAdmin->displayMenu();
+
+            break;
+
         case "dashboardCreate":
 
             $ctrlAdmin->displayDashboard();
 
             break;
 
-        // case "createProduct":
+        case "createProduct":
 
-        //     $ctrlAdmin->createProduct();
+            $ctrlAdmin->createProduct();
 
-        //     break;
+            Header("Location:index.php?action=dashboardCreate");
+
+            break;
     }
 }
