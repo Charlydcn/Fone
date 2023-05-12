@@ -103,7 +103,7 @@ if (isset($_GET['action'])) {
 
         case "dashboardCreate":
 
-            $ctrlAdmin->displayDashboard();
+            $ctrlAdmin->displayDashboardCreate();
 
             break;
 
@@ -112,6 +112,26 @@ if (isset($_GET['action'])) {
             $ctrlAdmin->createProduct();
 
             Header("Location:index.php?action=dashboardCreate");
+
+            break;
+
+        case "dashboardEditChoose":
+
+            $ctrlAdmin->displayEditDashboard();
+
+            break;
+
+        case "getEditDashboard":
+
+            $ctrlAdmin->getEditDashboard($id);
+
+            break;
+
+        case "editProduct":
+
+            $ctrlAdmin->editProduct($id);
+
+            Header("Location:index.php?action=getEditDashboard&id=$id");
 
             break;
     }
