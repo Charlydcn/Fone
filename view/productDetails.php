@@ -12,7 +12,13 @@ $newPrice = number_format($newPrice, 2);
 <article>
     <img src="public/img/<?= $product['category'] . "/" . $product['img'] ?>" alt="<?= $product['name'] ?> photo">
 
-    <p>-<?= $product['sale'] ?>%</p>
+    <?php
+    if ($product['sale'] > 0) {
+    ?>
+    
+        <p class="salePercentage">-<?= $product['sale'] ?>%</p>
+
+    <?php } ?>
 
     <ul>
         <li><?= $product['name'] ?></li>
