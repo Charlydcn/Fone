@@ -6,6 +6,12 @@ use Model\Connect;
 
 class adminController
 {
+
+    function displayMenu()
+    {
+        require 'view/admin.php';
+    }
+
     function displayDashboard()
     {
         $categories = Connect::getCategories();
@@ -22,7 +28,7 @@ class adminController
             $sale = filter_input(INPUT_POST, 'sale', FILTER_VALIDATE_INT);
             $description = filter_input(INPUT_POST, 'description', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
-            if (isset($_FILES['img'])) {
+            if (isset($_FILES['img']) && is_uploaded_file($_FILES['img']['tmp_name'])) {
                 $imgTmpName = $_FILES['img']['tmp_name'];
                 $imgName = $_FILES['img']['name'];
                 $imgSize = $_FILES['img']['size'];
