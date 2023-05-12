@@ -20,6 +20,18 @@ abstract class Connect {
         }
     }
 
+    public static function getCategories()
+    {
+        $db = self::dbConnect();
+
+        $sql = $db->query(
+            "SELECT id_category, name
+            FROM category"
+        );
+
+        return $sql->fetchAll();
+    }
+
     
 
 }
