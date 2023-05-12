@@ -2,10 +2,15 @@
 
 ob_start();
 
+if (isset($_SESSION['message'])) {
+    echo $_SESSION['message'];
+    unset($_SESSION['message']);
+}
+
 ?>
 
 
-<form action="index.php?action=createProduct" method="POST" enctype="multipart/from-data" autocomplete="off">
+<form action="index.php?action=createProduct" method="POST" enctype="multipart/form-data" autocomplete="off">
     <fieldset>
 
         <legend>
@@ -19,7 +24,7 @@ ob_start();
         
             <label>
                 Price :
-                <input type="number" name="price" step="0.5" min="0" required>
+                <input type="number" name="price" step=".01" min="0" required>
             </label>
 
             <label>
@@ -31,7 +36,7 @@ ob_start();
                     foreach($categories as $category) {
                     ?>
             
-                    <option value="<?=$category['id_category']?>" name="category">
+                    <option value="<?=$category['name']?>" name="category">
                         <?=ucfirst($category['name'])?>
                     </option>
             
@@ -42,7 +47,7 @@ ob_start();
         
             <label>
                 Reduction :
-                <input type="number" name="sale" step="5" min="0" max="100">
+                <input type="number" name="sale" min="0" max="100">
             </label>
         
             <label>
