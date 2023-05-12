@@ -6,7 +6,6 @@ $products = $sql->fetchAll();
 ?>
 
 <h1>All products</h1>
-<a href="index.php?action=dashboardCreate">Create product</a>
 <div>
 
     <?php
