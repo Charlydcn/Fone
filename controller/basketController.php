@@ -26,7 +26,7 @@ class basketController
 
         $product = $sql->fetch();
 
-        $_SESSION['basket'][] = $product;
+        $_SESSION['products'][] = $product;
 
         if ($product['sale'] > 0) {
 

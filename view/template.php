@@ -85,7 +85,7 @@
                 </li>
 
                 <li>
-                    <a href="index.php?action=basket"><i class="fa-solid fa-bag-shopping"></i> <?= count($_SESSION['basket']) ?></a>
+                    <a href="index.php?action=basket"><i class="fa-solid fa-bag-shopping"></i> <?= count($_SESSION['products']) ?></a>
                 </li>
             </ul>
 

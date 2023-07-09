@@ -16,7 +16,7 @@ ob_start();
     <tbody>
 
         <?php
-        foreach ($_SESSION['basket'] as $product) {
+        foreach ($_SESSION['products'] as $product) {
         ?>
             <tr>
                 <td colspan="6" class="line"></td>
