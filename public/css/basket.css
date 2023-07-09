@@ -61,3 +61,9 @@ tbody a:hover i {
     color:rgb(176, 56, 56);
     transform: scale(1.1);
 }
+
+h1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
