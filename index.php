@@ -134,5 +134,13 @@ if (isset($_GET['action'])) {
             Header("Location:index.php?action=getEditDashboard&id=$id");
 
             break;
+
+        case "removeProductBasket":
+
+            $ctrlBasket->deleteProduct($id);
+
+            Header("Location:index.php?action=basket");
+
+            break;
     }
 }
