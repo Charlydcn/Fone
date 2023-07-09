@@ -31,8 +31,15 @@ if (isset($_SESSION['products'])) {
 
                 <tr>
                     <td><img src="public/img/<?= $product['category'] . "/" . $product['img'] ?>" alt="<?= $product['name'] ?> photo"></td>
-                    <td><?= $product['name'] ?></td>
+
+                    <td>
+                        <a href="index.php?action=productDetails&id=<?= $product['id_product'] ?>">
+                            <span class="product_name"><?= $product['name'] ?></span>
+                        </a>
+                    </td>
+
                     <td>$<?= $product['price'] ?></td>
+
                     <td>
                         <div>
                             <input type="button" class="remove" value="-">
@@ -40,17 +47,22 @@ if (isset($_SESSION['products'])) {
                             <input type="button" class="add" value="+">
                         </div>
                     </td>
+
                     <td>$<?= $product['price'] ?></td>
+
                     <td>
-                        <a href="">
+                        <a href="index.php?action=removeProductBasket&id=<?= $id ?>">
                             <i class="fa-solid fa-trash"></i>
                         </a>
                     </td>
-                </tr>
 
+                </tr>
             <?php } ?>
         </tbody>
     </table>
+
+    <a href="index.php?action=clearBasket">Clear basket</a>
+
 
 <?php } else {
     echo "<h1>There's nothing in your basket ! (yet..)</h1>";

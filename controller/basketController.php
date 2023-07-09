@@ -36,4 +36,14 @@ class basketController
 
         Header("Location:index.php?action=productDetails&id=$id");
     }
+
+    function deleteProduct($id)
+    {
+        unset($_SESSION['products'][$id]);
+    }
+
+    function clearBasket()
+    {
+        unset($_SESSION['products']);
+    }
 }

@@ -69,7 +69,7 @@
                 </li>
                 <li>
                     <a href="index.php?action=contact" class="hover-underline-animation">CONTACT</a>
-                </li>                
+                </li>
                 <li>
                     <a href="index.php?action=admin" class="hover-underline-animation">ADMIN</a>
                 </li>
@@ -85,21 +85,12 @@
                 </li>
 
                 <li>
-<<<<<<< HEAD
-                    <a href="index.php?action=basket"><i class="fa-solid fa-bag-shopping"></i> <?= count($_SESSION['products']) ?></a>
-=======
                     <a href="index.php?action=basket">
                         <i class="fa-solid fa-bag-shopping"></i>
-                        <?php
-                        if(isset($_SESSION['products'])) {
+                        <?php if (isset($_SESSION['products'])) {
                             echo count($_SESSION['products']);
-
-                        } else { 
-                            echo "0";                           
-                        }
-                        ?>
+                        } ?>
                     </a>
->>>>>>> 34a55f913794ee2d6b361406054666afa782acff
                 </li>
             </ul>
 

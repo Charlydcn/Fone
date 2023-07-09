@@ -50,23 +50,23 @@ class adminController
                 $img = "missing.png";
             }
 
-            if($name && $price && $category && $description) {
+            if ($name && $price && $category && $description) {
 
                 // CREATION QUERY ************************************************
                 $pdo = Connect::dbConnect();
-    
+
                 $productQry = $pdo->prepare(
                     "INSERT INTO product (NAME, price, description, img)
                     VALUES (:name, :price, :description, :img)"
                 );
-    
+
                 $productQry->bindValue(':name', $name);
                 $productQry->bindValue(':price', $price);
                 $productQry->bindValue(':description', $description);
                 $productQry->bindValue(':img', $img);
-    
+
                 $productQry->execute();
-    
+
                 // CATEGORY QUERY ************************************************
                 $categoryQry = $pdo->prepare(
                     "UPDATE product
@@ -78,11 +78,11 @@ class adminController
                     WHERE id_product = LAST_INSERT_ID();
                     "
                 );
-    
+
                 $categoryQry->bindValue(':category', $category);
-    
+
                 $categoryQry->execute();
-    
+
                 // SALE QUERY ************************************************
                 if ($sale > 0 && $sale <= 100 && $sale) {
                     $saleQry = $pdo->prepare(
@@ -90,21 +90,18 @@ class adminController
                         SET sale = :sale
                         WHERE id_product = LAST_INSERT_ID();"
                     );
-        
+
                     $saleQry->bindValue(':sale', $sale);
-    
+
                     $saleQry->execute();
-    
                 }
 
                 $p = ucfirst($category); // UPPERCASE first letter
                 $p = rtrim($p, 's'); // Remove 's' (last letter) from string category
 
                 $_SESSION['message'] = "<p class='successMsg'>$p successfully created</p>";
-
-            } else {                
+            } else {
                 $_SESSION['message'] = "<p class='errorMsg'>Values error</p>";
-
             }
         }
     }
@@ -140,7 +137,7 @@ class adminController
         if (isset($_POST['submit'])) {
             $name = filter_input(INPUT_POST, 'name', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             $price = filter_input(INPUT_POST, 'price', FILTER_VALIDATE_FLOAT);
-            $category = filter_input(INPUT_POST, 'category', FILTER_VALIDATE_INT);
+            $category = filter_input(INPUT_POST, 'category', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             $sale = filter_input(INPUT_POST, 'sale', FILTER_VALIDATE_INT);
             $description = filter_input(INPUT_POST, 'description', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
@@ -180,16 +177,15 @@ class adminController
 
                 $updateQry = $pdo->prepare(
                     "UPDATE product
-                    SET name = :name, price = :price, id_category = :category, description = :description
+                    SET name = :name, price = :price, description = :description
                     WHERE id_product = :id"
                 );
 
                 $updateQry->bindValue(':name', $name);
                 $updateQry->bindValue(':price', $price);
-                $updateQry->bindValue(':category', $category);
                 $updateQry->bindValue(':description', $description);
                 $updateQry->bindValue(':id', $id);
-        
+
                 $updateQry->execute();
 
                 // SALE QUERY ***********************************************
@@ -208,10 +204,20 @@ class adminController
                     $saleQry->execute();
                 }
 
+                if ($sale == 0 || $sale === null) {
+                    $saleQry = $pdo->prepare(
+                        "UPDATE product
+                        SET sale = NULL
+                        WHERE id_product = :id"
+                    );
+
+                    $saleQry->execute(['id' => $id]);
+                }
+
+
                 // PORTRAIT QUERY ***********************************************
 
-                if ($img != 'missing.png' && $img != null && isset($img))
-                {
+                if ($img != 'missing.png' && $img != null && isset($img)) {
                     $imgQry = $pdo->prepare(
                         "UPDATE product
                         SET img = :img
@@ -224,13 +230,27 @@ class adminController
                     $imgQry->execute();
                 }
 
-                $_SESSION['message'] = "<p class='successMsg'>Product successfully modified</p>";
+                // CATEGORY QUERY ***********************************************
 
+                $categoryQry = $pdo->prepare(
+                    "UPDATE product
+                    SET id_category = (
+                        SELECT id_category
+                        FROM category
+                        WHERE category.name = :category
+                        )
+                    WHERE id_product = :id"
+                );
+
+                $categoryQry->bindValue(':category', $category);
+                $categoryQry->bindValue('id', $id);
+
+                $categoryQry->execute();
+
+                $_SESSION['message'] = "<p class='successMsg'>Product successfully modified</p>";
             } else {
                 $_SESSION['message'] = "<p class='errorMsg'>Values error</p>";
-
             }
         }
     }
 }
-

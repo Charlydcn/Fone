@@ -142,5 +142,13 @@ if (isset($_GET['action'])) {
             Header("Location:index.php?action=basket");
 
             break;
+
+        case "clearBasket";
+
+            $ctrlBasket->clearBasket();
+
+            Header("Location:index.php?action=basket");
+
+            break;
     }
 }
