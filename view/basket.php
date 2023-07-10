@@ -2,6 +2,11 @@
 
 ob_start();
 
+if (isset($_SESSION['message'])) {
+    echo $_SESSION['message'];
+    unset($_SESSION['message']);
+}
+
 ?>
 
 <?php
@@ -23,7 +28,20 @@ if (isset($_SESSION['products'])) {
         <tbody>
 
             <?php
+
+            $total = 0;
+
             foreach ($_SESSION['products'] as $product) {
+
+                $newPrice = $product['price'] * ((1 - ($product['sale']) / 100));
+                $newPrice = number_format($newPrice, 2);
+
+                if($product['sale'] > 0 || !empty($product['sale'])) {
+                    $total += $newPrice;
+                } else {
+                    $total += $product['price'];
+                }
+                
             ?>
                 <tr>
                     <td colspan="6" class="line"></td>
@@ -38,17 +56,34 @@ if (isset($_SESSION['products'])) {
                         </a>
                     </td>
 
-                    <td>$<?= $product['price'] ?></td>
+                    <td>                        
+                        <?php
+                        if ($product['sale'] > 0) {
+                        ?>
+
+                            <li>
+                                <span class="salePrice">$<?= $newPrice ?> </span>
+                                <span class='oldPrice'>$<?= $product['price'] ?></span>
+                            </li>
+
+                        <?php } else { ?>
+
+                            <li>
+                                <h2>$<?= $product['price'] ?></h2>
+                            </li>
+
+                        <?php } ?>
+                    </td>
 
                     <td>
                         <div>
                             <input type="button" class="remove" value="-">
-                            <p class="qtt">0</p>
+                            <p class="qtt">1</p>
                             <input type="button" class="add" value="+">
                         </div>
                     </td>
 
-                    <td>$<?= $product['price'] ?></td>
+                    <td>$<?= $newPrice ?></td>
 
                     <td>
                         <a href="index.php?action=removeProductBasket&id=<?= $id ?>">
@@ -58,6 +93,10 @@ if (isset($_SESSION['products'])) {
 
                 </tr>
             <?php } ?>
+                <tr>
+                    <td>Total</td>
+                    <td>$<?= number_format($total, 2); ?></td>
+                </tr>
         </tbody>
     </table>
 
