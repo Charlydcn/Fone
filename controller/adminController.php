@@ -163,13 +163,6 @@ class adminController
                 $img = "missing.png";
             }
 
-            // var_dump($name);
-            // var_dump($price);
-            // var_dump($category);
-            // var_dump($sale);
-            // var_dump($description);
-            // die;
-
             // UPDATE QUERY ***********************************************
             if ($name && $price && $category && $description) {
 
@@ -225,7 +218,7 @@ class adminController
                     );
 
                     $imgQry->bindValue(':img', $img);
-                    $imgQry->bindValue('id', $id);
+                    $imgQry->bindValue(':id', $id);
 
                     $imgQry->execute();
                 }
@@ -253,4 +246,50 @@ class adminController
             }
         }
     }
+
+    function deleteProduct($id)
+    {
+        $pdo = Connect::dbConnect();
+
+        $deleteQry = $pdo->prepare(
+            "DELETE FROM product
+            WHERE id_product = :id"
+            );
+
+        $deleteQry->execute([':id' => $id]);
+
+        $_SESSION['message'] = "<p class='successMsg'>Product successfully deleted</p>";
+
+    }
+
+    function displayAdminPassword()
+    {
+        require 'view/adminPassword.php';
+    }
+
+    function checkAdminPassword()
+    {
+
+        $realPassword = "admin";
+
+        if (isset($_POST['submit'])) {
+            $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+
+            if ($password) {
+                if($password === $realPassword) {
+
+                    Header("Location:index.php?action=admin");
+
+                } else {
+                    $_SESSION['message'] = "<p class='errorMsg'>Incorrect password</p>";
+                    Header("Location:index.php?action=adminPassword");
+
+
+                }
+            }
+
+        }
+
+    }
+
 }
