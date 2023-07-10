@@ -97,6 +97,22 @@ if (isset($_GET['action'])) {
 
             break;
 
+        case "addQtt":
+
+            $ctrlBasket->addQtt($id);
+
+            Header("Location:index.php?action=basket");
+
+            break;
+
+        case "removeQtt":
+
+            $ctrlBasket->removeQtt($id);
+
+            Header("Location:index.php?action=basket");
+
+            break;
+
         case "admin":
 
             $ctrlAdmin->displayMenu();
