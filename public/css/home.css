@@ -40,7 +40,7 @@ div > div {
   opacity: 90%;
 }
 
-@media (max-width: 1050px) {
+@media (max-width: 1080px) {
   div > div {
     width: unset;
   }
