@@ -93,6 +93,8 @@ if (isset($_GET['action'])) {
 
             $ctrlBasket->addToBasket($id);
 
+            Header("Location:index.php?action=productDetails&id=$id");
+
             break;
 
         case "admin":
@@ -150,5 +152,27 @@ if (isset($_GET['action'])) {
             Header("Location:index.php?action=basket");
 
             break;
+
+        case "deleteProduct";
+
+            $ctrlAdmin->deleteProduct($id);
+
+            Header('Location:index.php?action=admin');
+
+            break;
+
+        case "adminPassword";
+
+            $ctrlAdmin->displayAdminPassword();
+
+            break;
+
+        case "handleAdminPassword";
+
+            $ctrlAdmin->checkAdminPassword();
+
+            break;
+
+        
     }
 }
