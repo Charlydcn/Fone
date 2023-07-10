@@ -45,6 +45,7 @@ $secondTitle = "Sales";
 $css = "products.css";
 $css2 = "sales.css";
 $js = "";
+$basketQtt = $qtt;
 require 'template.php';
 
 ?>

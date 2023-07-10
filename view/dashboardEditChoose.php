@@ -53,6 +53,7 @@ $title = "Choose product to edit";
 $secondTitle = "Choose product to edit";
 $css = "admin.css";
 $css2 = "products.css";
+$basketQtt = $qtt;
 require 'template.php';
 
 ?>

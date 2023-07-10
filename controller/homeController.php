@@ -9,16 +9,39 @@ class homeController
 
     function displayHome()
     {
-        require 'view/home.php';
-    }
+        $basketQtt = $pdo->query(
+            "SELECT SUM(qtt)
+            FROM commande
+            GROUP BY qtt"
+            );
 
-    function displayAbout()
-    {
-        require 'view/about.php';
+        $qtt = $basketQtt->fetch();
+
+        require 'view/home.php';
     }
 
     function displayContact()
     {
+
+        $basketQtt = $pdo->query(
+            "SELECT SUM(qtt)
+            FROM commande
+            GROUP BY qtt"
+            );
+
+        $qtt = $basketQtt->fetch();
+        
         require 'view/contact.php';
+    }
+
+    function getBasketCount()
+    {
+        $pdo = Connect::dbConnect();
+
+        $basketQtt = $pdo->query(
+        "SELECT SUM(qtt)
+        FROM commande
+        GROUP BY qtt"
+        );
     }
 }

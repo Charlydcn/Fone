@@ -21,6 +21,14 @@ class basketController
 
         $products = $sql->fetchAll();
 
+        $basketQtt = $pdo->query(
+        "SELECT SUM(qtt)
+        FROM commande
+        GROUP BY qtt"
+        );
+
+        $qtt = $basketQtt->fetch();
+
         require 'view/basket.php';
     }
 
@@ -71,8 +79,6 @@ class basketController
             $_SESSION['message'] = "<p class='successMsg'>Product added to basket</p>";
             
         }
-
-        
 
     }
 
@@ -154,5 +160,16 @@ class basketController
         );
 
         $removeQttQry->execute([':id' => $id]);
+    }
+
+    function getBasketCount()
+    {
+        $pdo = Connect::dbConnect();
+
+        $basketQtt = $pdo->query(
+        "SELECT SUM(qtt)
+        FROM commande
+        GROUP BY qtt"
+        );
     }
 }

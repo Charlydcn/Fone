@@ -113,6 +113,14 @@ class productController
 
         $sql->execute(["id" => $id]);
 
+        $basketQtt = $pdo->query(
+        "SELECT SUM(qtt)
+        FROM commande
+        GROUP BY qtt"
+        );
+
+        $qtt = $basketQtt->fetch();
+
         require 'view/productDetails.php';
     }
 }

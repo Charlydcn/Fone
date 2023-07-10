@@ -12,6 +12,7 @@ $title = "About";
 $secondTitle = "About";
 $css = "";
 $js = "";
+$basketQtt = $qtt;
 require 'template.php';
 
 ?>

@@ -127,6 +127,7 @@ $title = "Basket";
 $secondTitle = "Basket";
 $css = "basket.css";
 $js = "productDetails.js";
+$basketQtt = $qtt;
 require 'template.php';
 
 ?>

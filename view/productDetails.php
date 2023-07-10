@@ -70,6 +70,7 @@ $secondTitle = "Product details";
 $css = "productDetails.css";
 $css2 = "products.css";
 $js = "productDetails.js";
+$basketQtt = $qtt;
 require 'template.php';
 
 ?>

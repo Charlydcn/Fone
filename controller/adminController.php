@@ -134,6 +134,23 @@ class adminController
 
     function editProduct($id)
     {
+        // GET OLD CATEGORY QUERY ***********************************************
+            
+            $pdo = Connect::dbConnect();
+        
+            $getOldCategory = $pdo->prepare( 
+                "SELECT name
+                FROM category
+                WHERE id_category = (
+                    SELECT id_category
+                    FROM product
+                    WHERE id_product = :id
+                    )"
+                );
+                
+            $getOldCategory->execute([':id' => $id]);
+            $oldCategory = $getOldCategory->fetch();
+
         if (isset($_POST['submit'])) {
             $name = filter_input(INPUT_POST, 'name', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             $price = filter_input(INPUT_POST, 'price', FILTER_VALIDATE_FLOAT);
@@ -141,32 +158,8 @@ class adminController
             $sale = filter_input(INPUT_POST, 'sale', FILTER_VALIDATE_INT);
             $description = filter_input(INPUT_POST, 'description', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
-            if (isset($_FILES['img']) && is_uploaded_file($_FILES['img']['tmp_name'])) {
-                $imgTmpName = $_FILES['img']['tmp_name'];
-                $imgName = $_FILES['img']['name'];
-                $imgSize = $_FILES['img']['size'];
-                $imgError = $_FILES['img']['error'];
-
-                $tabExtension = explode('.', $imgName);
-                $extension = strtolower(end($tabExtension));
-
-                //Tableau des extensions que l'on accepte
-                $extensions = ['jpg', 'png', 'jpeg', 'gif'];
-                $maxSize = 5000000;
-
-                if (in_array($extension, $extensions) && $imgSize <= $maxSize && $imgError == 0) {
-                    $uniqueName = uniqid('', true); // uniqid génère un ID random (exemple 5f586bf96dcd38.73540086)
-                    $img = $uniqueName . '.' . $extension;
-                    move_uploaded_file($imgTmpName, "public/img/$category/" . $img);
-                }
-            } else {
-                $img = "missing.png";
-            }
-
             // UPDATE QUERY ***********************************************
             if ($name && $price && $category && $description) {
-
-                $pdo = Connect::dbConnect();
 
                 $updateQry = $pdo->prepare(
                     "UPDATE product
@@ -204,23 +197,7 @@ class adminController
                         WHERE id_product = :id"
                     );
 
-                    $saleQry->execute(['id' => $id]);
-                }
-
-
-                // PORTRAIT QUERY ***********************************************
-
-                if ($img != 'missing.png' && $img != null && isset($img)) {
-                    $imgQry = $pdo->prepare(
-                        "UPDATE product
-                        SET img = :img
-                        WHERE id_product = :id"
-                    );
-
-                    $imgQry->bindValue(':img', $img);
-                    $imgQry->bindValue(':id', $id);
-
-                    $imgQry->execute();
+                    $saleQry->execute([':id' => $id]);
                 }
 
                 // CATEGORY QUERY ***********************************************
@@ -239,6 +216,66 @@ class adminController
                 $categoryQry->bindValue('id', $id);
 
                 $categoryQry->execute();
+
+                // GET NEW CATEGORY QUERY ***********************************************
+
+                $getNewCategoryQry = $pdo->prepare(
+                    "SELECT name
+                    FROM category
+                    WHERE id_category = (
+                        SELECT id_category
+                        FROM product
+                        WHERE id_product = :id
+                        )"
+                    );
+                
+                $getNewCategoryQry->execute([':id' => $id]);
+                $newCategory = $getNewCategoryQry->fetch();
+
+                // IMAGE QUERY ***********************************************
+
+                if (isset($_FILES['img']) && is_uploaded_file($_FILES['img']['tmp_name'])) {
+                $imgTmpName = $_FILES['img']['tmp_name'];
+                $imgName = $_FILES['img']['name'];
+                $imgSize = $_FILES['img']['size'];
+                $imgError = $_FILES['img']['error'];
+
+                $tabExtension = explode('.', $imgName);
+                $extension = strtolower(end($tabExtension));
+
+                //Tableau des extensions que l'on accepte
+                $extensions = ['jpg', 'png', 'jpeg', 'gif'];
+                $maxSize = 5000000;
+
+                if (in_array($extension, $extensions) && $imgSize <= $maxSize && $imgError == 0) {
+                    $uniqueName = uniqid('', true); // uniqid génère un ID random (exemple 5f586bf96dcd38.73540086)
+                    $img = $uniqueName . '.' . $extension;
+                    move_uploaded_file($imgTmpName, "public/img/$category/" . $img);
+
+                    if ($img != 'missing.png' && $img != null && isset($img)) {
+                        $imgQry = $pdo->prepare(
+                            "UPDATE product
+                            SET img = :img
+                            WHERE id_product = :id"
+                        );
+
+                        $imgQry->bindValue(':img', $img);
+                        $imgQry->bindValue(':id', $id);
+
+                        $imgQry->execute();
+                    }
+                } else {
+                    $img = "missing.png";
+                }}
+
+                // var_dump($oldCategory[0]);
+                // var_dump($newCategory[0]);
+                // die;
+                // CHANGING IMAGE DIRECTORY IF CATEGORY CHANGED ***********************************************
+
+                // if($oldCategory != $newCategory) {
+                //     move_uploaded_file($imgTmpName, "public/img/$newCategory/" . $img);
+                // }
 
                 $_SESSION['message'] = "<p class='successMsg'>Product successfully modified</p>";
             } else {
@@ -288,6 +325,17 @@ class adminController
                 }
             }
 
+        }
+
+        function getBasketCount()
+        {
+            $pdo = Connect::dbConnect();
+
+            $basketQtt = $pdo->query(
+            "SELECT SUM(qtt)
+            FROM commande
+            GROUP BY qtt"
+            );
         }
 
     }

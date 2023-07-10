@@ -26,6 +26,7 @@ $content = ob_get_clean();
 $title = "Admin";
 $secondTitle = "Admin";
 $css = "admin.css";
+$basketQtt = $qtt;
 require 'template.php';
 
 ?>

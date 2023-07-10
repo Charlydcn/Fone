@@ -73,6 +73,7 @@ $title = "Creation";
 $secondTitle = "Creation";
 $css = "admin.css";
 $js = "";
+$basketQtt = $qtt;
 require 'template.php';
 
 ?>

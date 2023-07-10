@@ -53,6 +53,7 @@ $title = "All products";
 $secondTitle = "All products";
 $css = "products.css";
 $js = "";
+$basketQtt = $qtt;
 require 'template.php';
 
 ?>

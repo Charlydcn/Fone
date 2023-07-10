@@ -25,6 +25,7 @@ $title = "Home";
 $secondTitle = "Home";
 $css = "home.css";
 $js = "home.js";
+$basketQtt = $qtt;
 require 'template.php';
 
 ?>

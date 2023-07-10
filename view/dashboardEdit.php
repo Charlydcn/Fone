@@ -87,6 +87,7 @@ $title = "Edit product";
 $secondTitle = "Edit product";
 $css = "admin.css";
 $js = "";
+$basketQtt = $qtt;
 require 'template.php';
 
 ?>

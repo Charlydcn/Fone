@@ -55,6 +55,7 @@ $title = "Smartwatches";
 $secondTitle = "Smartwatches";
 $css = "products.css";
 $js = "";
+$basketQtt = $qtt;
 require 'template.php';
 
 ?>
