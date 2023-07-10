@@ -7,6 +7,11 @@ $product = $sql->fetch();
 $newPrice = $product['price'] * ((1 - ($product['sale']) / 100));
 $newPrice = number_format($newPrice, 2);
 
+if (isset($_SESSION['message'])) {
+    echo $_SESSION['message'];
+    unset($_SESSION['message']);
+}
+
 ?>
 
 <article>
