@@ -7,6 +7,10 @@ table img {
     max-width: 100px;
 }
 
+li {
+    list-style: none;
+}
+
 th {
     text-align: start;
 }
@@ -24,7 +28,7 @@ tbody td {
     height:150px;
 }
 
-tbody td:first-of-type {
+tbody tr:nth-of-type(2) td:first-of-type {
     width:115px;
 }
 
@@ -86,9 +90,30 @@ table+a {
     transition:.3s;
     display: flex;
     width: fit-content;
-    margin: auto 10%;
+    margin: 5% 10%;
 }
 
 table+a:hover {
     translate:5px;
+}
+
+.oldPrice {
+    position:initial;
+    font-size: 16px;
+}
+
+.salePrice {
+    font-size: 20px;
+}
+
+tr:last-of-type td {
+    height:fit-content;
+}
+
+table tr:last-of-type td {
+    font-size: 22px;
+}
+
+table tr:last-of-type td:last-of-type {
+    font-weight: 600;
 }
