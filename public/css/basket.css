@@ -42,17 +42,20 @@ tbody div:first-of-type {
     flex-wrap: wrap;
 }
 
-tbody div:first-of-type input {
+.qtt a {
+    display: flex;
     font-size: 22px;
     border: none;
+    color: black;
     border-radius: 50%;
-    background:none;
     width: 22px;
     cursor: pointer;
     transition: .3s;
+    justify-content: center;
+    align-items: center;
 }
 
-tbody div:first-of-type input:hover {
+.qtt a:hover {
     background:rgb(0,0,0, 0.1);
 }
 
@@ -99,11 +102,11 @@ table+a:hover {
 
 .oldPrice {
     position:initial;
-    font-size: 16px;
+    font-size: 14px;
 }
 
 .salePrice {
-    font-size: 20px;
+    font-size: 18px;
 }
 
 tr:last-of-type td {
@@ -115,5 +118,13 @@ table tr:last-of-type td {
 }
 
 table tr:last-of-type td:last-of-type {
+    font-weight: 600;
+}
+
+.price {
+    font-size: 18px;
+}
+
+td > .price {
     font-weight: 600;
 }
