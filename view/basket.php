@@ -11,7 +11,7 @@ if (isset($_SESSION['message'])) {
 
 <?php
 
-if (isset($_SESSION['products'])) {
+if(!empty($products)) {
 
 ?>
 
@@ -29,17 +29,24 @@ if (isset($_SESSION['products'])) {
 
             <?php
 
-            $total = 0;
+            $globTotal = 0;
 
-            foreach ($_SESSION['products'] as $product) {
+            foreach ($products as $product) {
 
-                $newPrice = $product['price'] * ((1 - ($product['sale']) / 100));
-                $newPrice = number_format($newPrice, 2);
+                $total = 0;
+
 
                 if($product['sale'] > 0 || !empty($product['sale'])) {
-                    $total += $newPrice;
+
+                    $newPrice = $product['price'] * ((1 - ($product['sale']) / 100));
+                    $total += ($newPrice*$product['qtt']);
+                    $globTotal += $total; 
+
+
                 } else {
-                    $total += $product['price'];
+                    $total += ($product['price']*$product['qtt']);
+
+                    $globTotal += $total; 
                 }
                 
             ?>
@@ -61,42 +68,46 @@ if (isset($_SESSION['products'])) {
                         if ($product['sale'] > 0) {
                         ?>
 
-                            <li>
-                                <span class="salePrice">$<?= $newPrice ?> </span>
-                                <span class='oldPrice'>$<?= $product['price'] ?></span>
+                            <li> <!-- PRIX (solde) --> 
+                                <span class="salePrice">$<?= number_format($newPrice, 2) ?></span>
+                                <span class='oldPrice'>$<?= number_format($product['price'], 2) ?></span>
                             </li>
 
                         <?php } else { ?>
 
-                            <li>
-                                <h2>$<?= $product['price'] ?></h2>
+                            <li> <!-- PRIX (non-solde) -->
+                                <span class="price">$<?= number_format($product['price'], 2) ?><span>
                             </li>
 
                         <?php } ?>
                     </td>
 
                     <td>
-                        <div>
-                            <input type="button" class="remove" value="-">
-                            <p class="qtt">1</p>
-                            <input type="button" class="add" value="+">
+                        <div class="qtt">
+                            <a href="index.php?action=removeQtt&id=<?= $product['id_product'] ?>">-</a>
+                            <p><?=$product['qtt']?></p>
+                            <a href="index.php?action=addQtt&id=<?= $product['id_product'] ?>">+</a>
                         </div>
                     </td>
-
-                    <td>$<?= $newPrice ?></td>
+                        <!-- TOTAL PAR PRODUIT -->
+                    <td><span class="price">$<?= number_format($total, 2) ?></span></td>
 
                     <td>
-                        <a href="index.php?action=removeProductBasket&id=<?= $id ?>">
+                        <a href="index.php?action=removeProductBasket&id=<?= $product['id_product'] ?>">
                             <i class="fa-solid fa-trash"></i>
                         </a>
                     </td>
 
                 </tr>
+
             <?php } ?>
+
                 <tr>
-                    <td>Total</td>
-                    <td>$<?= number_format($total, 2); ?></td>
+                    <td>Total</td> 
+                    <!-- BIG TOTAL -->                   
+                    <td>$<?= number_format($globTotal, 2) ?></td>
                 </tr>
+                
         </tbody>
     </table>
 
