@@ -71,7 +71,7 @@
                     <a href="index.php?action=contact" class="hover-underline-animation">CONTACT</a>
                 </li>
                 <li>
-                    <a href="index.php?action=admin" class="hover-underline-animation">ADMIN</a>
+                    <a href="index.php?action=adminPassword" class="hover-underline-animation">ADMIN</a>
                 </li>
             </ul>
 
