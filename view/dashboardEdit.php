@@ -64,7 +64,13 @@ $product = $sql->fetch();
                 <input type="file" name="img">
             </label>
 
-            <input type="submit" name="submit" value="Edit product">
+            <div>
+                <input type="submit" name="submit" value="Edit product">
+                
+                <a href="index.php?action=deleteProduct&id=<?=$product['id_product']?>">
+                    <i class="fa-solid fa-trash"></i>
+                </a>
+            </div>
 
             <img src="public/img/<?= $product['category'] . "/" . $product['img'] ?>" alt="<?= $product['name'] ?> image">
 
