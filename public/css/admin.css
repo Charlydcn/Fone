@@ -13,7 +13,7 @@ form fieldset {
 	padding: 5%;
 }
 
-fieldset div {
+fieldset legend~div {
 	width: 60%;
 	display: flex;
 	flex-direction: column;
@@ -109,4 +109,33 @@ h1 ~ select option {
 
 fieldset img {
 	max-width: 300px;
+}
+
+fieldset div div:first-of-type {
+	display: flex;
+    gap: 5%;
+    align-items: center;
+}
+
+fieldset div div:first-of-type a {
+	text-decoration: none;
+    color: black;
+    font-size: 20px;
+	transition:.3s;
+}
+
+fieldset div div:first-of-type a:hover {
+	color:rgb(180, 20, 20);
+}
+
+#adminMenu form {
+	display: flex;
+    flex-direction: column;
+	margin:0;
+	gap:15px;
+}
+
+#adminMenu form input:first-of-type {
+	width:50%;
+	height:25px;
 }
