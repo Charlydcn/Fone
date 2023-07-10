@@ -34,7 +34,8 @@ class basketController
             $newPrice = number_format($newPrice, 2);
         }
 
-        Header("Location:index.php?action=productDetails&id=$id");
+        $_SESSION['message'] = "<p class='successMsg'>Product added to basket</p>";
+
     }
 
     function deleteProduct($id)
@@ -45,5 +46,7 @@ class basketController
     function clearBasket()
     {
         unset($_SESSION['products']);
+
+        $_SESSION['message'] = "<p class='successMsg'>Basket cleared</p>";
     }
 }
