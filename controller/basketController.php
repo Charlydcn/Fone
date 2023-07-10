@@ -8,6 +8,19 @@ class basketController
 {
     function displayBasket()
     {
+
+        $pdo = Connect::dbConnect();
+
+        $sql = $pdo->query(
+        "SELECT product.id_product, product.name, price, sale, img, id_commande, category.name AS 'category', qtt
+        FROM product
+        INNER JOIN commande ON product.id_product = commande.id_product
+        INNER JOIN category ON product.id_category = category.id_category
+        ORDER BY price DESC"
+        );
+
+        $products = $sql->fetchAll();
+
         require 'view/basket.php';
     }
 
@@ -15,38 +28,131 @@ class basketController
     {
         $pdo = Connect::dbConnect();
 
-        $sql = $pdo->prepare(
-            "SELECT id_product, product.name AS 'name', price, sale, DESCRIPTION as 'description', img, product.id_category AS 'id_category', category.name AS 'category'
-            FROM product
-            INNER JOIN category ON product.id_category = category.id_category
-            WHERE id_product = :id"
-        );
+        // CHECK IF THE PRODUCT IS ALREADY IN THE BASKET (bool(false) if not)
 
-        $sql->execute(["id" => $id]);
+        $getProductQry = $pdo->prepare(
+        "SELECT id_product
+        FROM commande
+        WHERE id_product = :id");
 
-        $product = $sql->fetch();
+        $getProductQry->execute([':id' => $id]);
 
-        $_SESSION['products'][] = $product;
+        $product = $getProductQry->fetch();
 
-        if ($product['sale'] > 0) {
+        if($product === false || $product === null) {
+            $addProductQry = $pdo->prepare(
+            "INSERT INTO commande (qtt, id_product)
+            VALUES (1, :id)"
+            );
 
-            $newPrice = $product['price'] * ((1 - ($product['sale']) / 100));
-            $newPrice = number_format($newPrice, 2);
-        }
+            $addProductQry->execute([':id' => $id]);
 
         $_SESSION['message'] = "<p class='successMsg'>Product added to basket</p>";
 
+        // IF ALREADY IN THE BASKET :
+        // WE GET THE ID_COMMANDE TO ADD +1 TO QTT OF THIS COMMAND 
+        } else {
+            $getCommandeQry = $pdo->prepare(
+            "SELECT id_commande
+            FROM commande
+            WHERE id_product = :id"
+            );
+
+            $getCommandeQry->execute([':id' => $id]);
+
+            $id = $getCommandeQry->fetch();
+            $idCommande = $id[0];
+
+            $incrementQry = $pdo->query(
+            "UPDATE commande
+            SET qtt = qtt + 1
+            WHERE id_commande = $idCommande");
+
+            $_SESSION['message'] = "<p class='successMsg'>Product added to basket</p>";
+            
+        }
+
+        
+
+    }
+
+    function getProductsInBasket()
+    {
+        $pdo = Connect::dbConnect();
+
+        $sql = $pdo->query(
+        "SELECT product.id_product, NAME, price, sale, img, id_commande
+        FROM product
+        INNER JOIN commande ON product.id_product = commande.id_product"
+        );
+
+        require 'view/basket.php';
     }
 
     function deleteProduct($id)
     {
-        unset($_SESSION['products'][$id]);
+
+        $pdo = Connect::dbConnect();
+
+        $deleteProductQry = $pdo->prepare(
+            "DELETE FROM commande
+            WHERE id_product = :id");
+
+        $deleteProductQry->execute([':id' => $id]);
     }
 
     function clearBasket()
     {
-        unset($_SESSION['products']);
+        $pdo = Connect::dbConnect();
+
+        $sql = $pdo->query(
+        "TRUNCATE commande"
+        );
 
         $_SESSION['message'] = "<p class='successMsg'>Basket cleared</p>";
+    }
+
+    function addQtt($id)
+    {
+        $pdo = Connect::dbConnect();
+
+        $sql = $pdo->prepare(
+        "UPDATE commande
+        SET qtt = qtt + 1
+        WHERE id_product = :id"
+        );
+
+        $sql->execute([':id' => $id]);
+    }
+
+    function removeQtt($id)
+    {
+        $pdo = Connect::dbConnect();
+
+        $getQttQry = $pdo->prepare(
+        "SELECT qtt
+        FROM commande
+        WHERE id_product = :id"
+        );
+
+        $getQttQry->execute([':id' => $id]);
+
+        $qtt = $getQttQry->fetch();
+
+        if($qtt[0] < 2) {
+            $deleteProductQry = $pdo->prepare(
+            "DELETE FROM commande
+            WHERE id_product = :id");
+
+            $deleteProductQry->execute([':id' => $id]);
+        }
+
+        $removeQttQry = $pdo->prepare(
+        "UPDATE commande
+        SET qtt = qtt - 1
+        WHERE id_product = :id"
+        );
+
+        $removeQttQry->execute([':id' => $id]);
     }
 }
