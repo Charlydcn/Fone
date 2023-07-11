@@ -9,11 +9,13 @@ class homeController
 
     function displayHome()
     {
+        $pdo = Connect::dbConnect();
+
         $basketQtt = $pdo->query(
             "SELECT SUM(qtt)
             FROM commande
             GROUP BY qtt"
-            );
+        );
 
         $qtt = $basketQtt->fetch();
 
@@ -22,15 +24,16 @@ class homeController
 
     function displayContact()
     {
+        $pdo = Connect::dbConnect();
 
         $basketQtt = $pdo->query(
             "SELECT SUM(qtt)
             FROM commande
             GROUP BY qtt"
-            );
+        );
 
         $qtt = $basketQtt->fetch();
-        
+
         require 'view/contact.php';
     }
 
@@ -39,7 +42,7 @@ class homeController
         $pdo = Connect::dbConnect();
 
         $basketQtt = $pdo->query(
-        "SELECT SUM(qtt)
+            "SELECT SUM(qtt)
         FROM commande
         GROUP BY qtt"
         );

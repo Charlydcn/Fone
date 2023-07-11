@@ -11,6 +11,18 @@ class productController
 
         $products = Connect::getProducts();
 
+        // BASKET QTT QUERY
+
+        $pdo = Connect::dbConnect();
+
+        $basketQtt = $pdo->query(
+            "SELECT SUM(qtt)
+        FROM commande
+        GROUP BY qtt"
+        );
+
+        $qtt = $basketQtt->fetch();
+
         require 'view/allProducts.php';
     }
 
@@ -28,6 +40,16 @@ class productController
                 WHERE NAME = 'smartphones'
                 )"
         );
+
+        // BASKET QTT QUERY
+
+        $basketQtt = $pdo->query(
+            "SELECT SUM(qtt)
+        FROM commande
+        GROUP BY qtt"
+        );
+
+        $qtt = $basketQtt->fetch();
 
         require 'view/smartphones.php';
     }
@@ -47,6 +69,16 @@ class productController
                 )"
         );
 
+        // BASKET QTT QUERY
+
+        $basketQtt = $pdo->query(
+            "SELECT SUM(qtt)
+        FROM commande
+        GROUP BY qtt"
+        );
+
+        $qtt = $basketQtt->fetch();
+
         require 'view/smartwatches.php';
     }
 
@@ -64,6 +96,16 @@ class productController
                 WHERE NAME = 'accessories'
                 )"
         );
+
+        // BASKET QTT QUERY
+
+        $basketQtt = $pdo->query(
+            "SELECT SUM(qtt)
+            FROM commande
+            GROUP BY qtt"
+        );
+
+        $qtt = $basketQtt->fetch();
 
         require 'view/accessories.php';
     }
@@ -83,6 +125,16 @@ class productController
                 )"
         );
 
+        // BASKET QTT QUERY
+
+        $basketQtt = $pdo->query(
+            "SELECT SUM(qtt)
+        FROM commande
+        GROUP BY qtt"
+        );
+
+        $qtt = $basketQtt->fetch();
+
         require 'view/watchAccessories.php';
     }
 
@@ -96,6 +148,16 @@ class productController
             INNER JOIN category ON product.id_category = category.id_category
             WHERE sale IS NOT NULL"
         );
+
+        // BASKET QTT QUERY
+
+        $basketQtt = $pdo->query(
+            "SELECT SUM(qtt)
+        FROM commande
+        GROUP BY qtt"
+        );
+
+        $qtt = $basketQtt->fetch();
 
         require 'view/sales.php';
     }
@@ -113,8 +175,10 @@ class productController
 
         $sql->execute(["id" => $id]);
 
+        // BASKET QTT QUERY
+
         $basketQtt = $pdo->query(
-        "SELECT SUM(qtt)
+            "SELECT SUM(qtt)
         FROM commande
         GROUP BY qtt"
         );

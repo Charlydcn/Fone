@@ -12,7 +12,7 @@ class basketController
         $pdo = Connect::dbConnect();
 
         $sql = $pdo->query(
-        "SELECT product.id_product, product.name, price, sale, img, id_commande, category.name AS 'category', qtt
+            "SELECT product.id_product, product.name, price, sale, img, id_commande, category.name AS 'category', qtt
         FROM product
         INNER JOIN commande ON product.id_product = commande.id_product
         INNER JOIN category ON product.id_category = category.id_category
@@ -21,8 +21,10 @@ class basketController
 
         $products = $sql->fetchAll();
 
+        // BASKET QTT QUERY
+
         $basketQtt = $pdo->query(
-        "SELECT SUM(qtt)
+            "SELECT SUM(qtt)
         FROM commande
         GROUP BY qtt"
         );
@@ -39,29 +41,30 @@ class basketController
         // CHECK IF THE PRODUCT IS ALREADY IN THE BASKET (bool(false) if not)
 
         $getProductQry = $pdo->prepare(
-        "SELECT id_product
+            "SELECT id_product
         FROM commande
-        WHERE id_product = :id");
+        WHERE id_product = :id"
+        );
 
         $getProductQry->execute([':id' => $id]);
 
         $product = $getProductQry->fetch();
 
-        if($product === false || $product === null) {
+        if ($product === false || $product === null) {
             $addProductQry = $pdo->prepare(
-            "INSERT INTO commande (qtt, id_product)
+                "INSERT INTO commande (qtt, id_product)
             VALUES (1, :id)"
             );
 
             $addProductQry->execute([':id' => $id]);
 
-        $_SESSION['message'] = "<p class='successMsg'>Product added to basket</p>";
+            $_SESSION['message'] = "<p class='successMsg'>Product added to basket</p>";
 
-        // IF ALREADY IN THE BASKET :
-        // WE GET THE ID_COMMANDE TO ADD +1 TO QTT OF THIS COMMAND 
+            // IF ALREADY IN THE BASKET :
+            // WE GET THE ID_COMMANDE TO ADD +1 TO QTT OF THIS COMMAND 
         } else {
             $getCommandeQry = $pdo->prepare(
-            "SELECT id_commande
+                "SELECT id_commande
             FROM commande
             WHERE id_product = :id"
             );
@@ -72,27 +75,13 @@ class basketController
             $idCommande = $id[0];
 
             $incrementQry = $pdo->query(
-            "UPDATE commande
+                "UPDATE commande
             SET qtt = qtt + 1
-            WHERE id_commande = $idCommande");
+            WHERE id_commande = $idCommande"
+            );
 
             $_SESSION['message'] = "<p class='successMsg'>Product added to basket</p>";
-            
         }
-
-    }
-
-    function getProductsInBasket()
-    {
-        $pdo = Connect::dbConnect();
-
-        $sql = $pdo->query(
-        "SELECT product.id_product, NAME, price, sale, img, id_commande
-        FROM product
-        INNER JOIN commande ON product.id_product = commande.id_product"
-        );
-
-        require 'view/basket.php';
     }
 
     function deleteProduct($id)
@@ -102,7 +91,8 @@ class basketController
 
         $deleteProductQry = $pdo->prepare(
             "DELETE FROM commande
-            WHERE id_product = :id");
+            WHERE id_product = :id"
+        );
 
         $deleteProductQry->execute([':id' => $id]);
     }
@@ -112,7 +102,7 @@ class basketController
         $pdo = Connect::dbConnect();
 
         $sql = $pdo->query(
-        "TRUNCATE commande"
+            "TRUNCATE commande"
         );
 
         $_SESSION['message'] = "<p class='successMsg'>Basket cleared</p>";
@@ -123,7 +113,7 @@ class basketController
         $pdo = Connect::dbConnect();
 
         $sql = $pdo->prepare(
-        "UPDATE commande
+            "UPDATE commande
         SET qtt = qtt + 1
         WHERE id_product = :id"
         );
@@ -136,7 +126,7 @@ class basketController
         $pdo = Connect::dbConnect();
 
         $getQttQry = $pdo->prepare(
-        "SELECT qtt
+            "SELECT qtt
         FROM commande
         WHERE id_product = :id"
         );
@@ -145,16 +135,17 @@ class basketController
 
         $qtt = $getQttQry->fetch();
 
-        if($qtt[0] < 2) {
+        if ($qtt[0] < 2) {
             $deleteProductQry = $pdo->prepare(
-            "DELETE FROM commande
-            WHERE id_product = :id");
+                "DELETE FROM commande
+            WHERE id_product = :id"
+            );
 
             $deleteProductQry->execute([':id' => $id]);
         }
 
         $removeQttQry = $pdo->prepare(
-        "UPDATE commande
+            "UPDATE commande
         SET qtt = qtt - 1
         WHERE id_product = :id"
         );
@@ -166,8 +157,10 @@ class basketController
     {
         $pdo = Connect::dbConnect();
 
+        // BASKET QTT QUERY
+
         $basketQtt = $pdo->query(
-        "SELECT SUM(qtt)
+            "SELECT SUM(qtt)
         FROM commande
         GROUP BY qtt"
         );

@@ -9,12 +9,32 @@ class adminController
 
     function displayMenu()
     {
+        $pdo = Connect::dbConnect();
+
+        $basketQtt = $pdo->query(
+            "SELECT SUM(qtt)
+            FROM commande
+            GROUP BY qtt"
+        );
+
+        $qtt = $basketQtt->fetch();
+
         require 'view/admin.php';
     }
 
     function displayDashboardCreate()
     {
         $categories = Connect::getCategories();
+
+        $pdo = Connect::dbConnect();
+
+        $basketQtt = $pdo->query(
+            "SELECT SUM(qtt)
+            FROM commande
+            GROUP BY qtt"
+        );
+
+        $qtt = $basketQtt->fetch();
 
         require 'view/dashboardCreate.php';
     }
@@ -110,6 +130,16 @@ class adminController
     {
         $products = Connect::getProducts();
 
+        $pdo = Connect::dbConnect();
+
+        $basketQtt = $pdo->query(
+            "SELECT SUM(qtt)
+            FROM commande
+            GROUP BY qtt"
+        );
+
+        $qtt = $basketQtt->fetch();
+
         require 'view/dashboardEditChoose.php';
     }
 
@@ -129,27 +159,35 @@ class adminController
 
         $categories = Connect::getCategories();
 
+        $basketQtt = $pdo->query(
+            "SELECT SUM(qtt)
+            FROM commande
+            GROUP BY qtt"
+        );
+
+        $qtt = $basketQtt->fetch();
+
         require 'view/dashboardEdit.php';
     }
 
     function editProduct($id)
     {
         // GET OLD CATEGORY QUERY ***********************************************
-            
-            $pdo = Connect::dbConnect();
-        
-            $getOldCategory = $pdo->prepare( 
-                "SELECT name
+
+        $pdo = Connect::dbConnect();
+
+        $getOldCategory = $pdo->prepare(
+            "SELECT name
                 FROM category
                 WHERE id_category = (
                     SELECT id_category
                     FROM product
                     WHERE id_product = :id
                     )"
-                );
-                
-            $getOldCategory->execute([':id' => $id]);
-            $oldCategory = $getOldCategory->fetch();
+        );
+
+        $getOldCategory->execute([':id' => $id]);
+        $oldCategory = $getOldCategory->fetch();
 
         if (isset($_POST['submit'])) {
             $name = filter_input(INPUT_POST, 'name', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
@@ -227,46 +265,47 @@ class adminController
                         FROM product
                         WHERE id_product = :id
                         )"
-                    );
-                
+                );
+
                 $getNewCategoryQry->execute([':id' => $id]);
                 $newCategory = $getNewCategoryQry->fetch();
 
                 // IMAGE QUERY ***********************************************
 
                 if (isset($_FILES['img']) && is_uploaded_file($_FILES['img']['tmp_name'])) {
-                $imgTmpName = $_FILES['img']['tmp_name'];
-                $imgName = $_FILES['img']['name'];
-                $imgSize = $_FILES['img']['size'];
-                $imgError = $_FILES['img']['error'];
+                    $imgTmpName = $_FILES['img']['tmp_name'];
+                    $imgName = $_FILES['img']['name'];
+                    $imgSize = $_FILES['img']['size'];
+                    $imgError = $_FILES['img']['error'];
 
-                $tabExtension = explode('.', $imgName);
-                $extension = strtolower(end($tabExtension));
+                    $tabExtension = explode('.', $imgName);
+                    $extension = strtolower(end($tabExtension));
 
-                //Tableau des extensions que l'on accepte
-                $extensions = ['jpg', 'png', 'jpeg', 'gif'];
-                $maxSize = 5000000;
+                    //Tableau des extensions que l'on accepte
+                    $extensions = ['jpg', 'png', 'jpeg', 'gif'];
+                    $maxSize = 5000000;
 
-                if (in_array($extension, $extensions) && $imgSize <= $maxSize && $imgError == 0) {
-                    $uniqueName = uniqid('', true); // uniqid génère un ID random (exemple 5f586bf96dcd38.73540086)
-                    $img = $uniqueName . '.' . $extension;
-                    move_uploaded_file($imgTmpName, "public/img/$category/" . $img);
+                    if (in_array($extension, $extensions) && $imgSize <= $maxSize && $imgError == 0) {
+                        $uniqueName = uniqid('', true); // uniqid génère un ID random (exemple 5f586bf96dcd38.73540086)
+                        $img = $uniqueName . '.' . $extension;
+                        move_uploaded_file($imgTmpName, "public/img/$category/" . $img);
 
-                    if ($img != 'missing.png' && $img != null && isset($img)) {
-                        $imgQry = $pdo->prepare(
-                            "UPDATE product
+                        if ($img != 'missing.png' && $img != null && isset($img)) {
+                            $imgQry = $pdo->prepare(
+                                "UPDATE product
                             SET img = :img
                             WHERE id_product = :id"
-                        );
+                            );
 
-                        $imgQry->bindValue(':img', $img);
-                        $imgQry->bindValue(':id', $id);
+                            $imgQry->bindValue(':img', $img);
+                            $imgQry->bindValue(':id', $id);
 
-                        $imgQry->execute();
+                            $imgQry->execute();
+                        }
+                    } else {
+                        $img = "missing.png";
                     }
-                } else {
-                    $img = "missing.png";
-                }}
+                }
 
                 // var_dump($oldCategory[0]);
                 // var_dump($newCategory[0]);
@@ -291,16 +330,25 @@ class adminController
         $deleteQry = $pdo->prepare(
             "DELETE FROM product
             WHERE id_product = :id"
-            );
+        );
 
         $deleteQry->execute([':id' => $id]);
 
         $_SESSION['message'] = "<p class='successMsg'>Product successfully deleted</p>";
-
     }
 
     function displayAdminPassword()
     {
+        $pdo = Connect::dbConnect();
+
+        $basketQtt = $pdo->query(
+            "SELECT SUM(qtt)
+            FROM commande
+            GROUP BY qtt"
+        );
+
+        $qtt = $basketQtt->fetch();
+
         require 'view/adminPassword.php';
     }
 
@@ -313,18 +361,14 @@ class adminController
             $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
             if ($password) {
-                if($password === $realPassword) {
+                if ($password === $realPassword) {
 
                     Header("Location:index.php?action=admin");
-
                 } else {
                     $_SESSION['message'] = "<p class='errorMsg'>Incorrect password</p>";
                     Header("Location:index.php?action=adminPassword");
-
-
                 }
             }
-
         }
 
         function getBasketCount()
@@ -332,12 +376,10 @@ class adminController
             $pdo = Connect::dbConnect();
 
             $basketQtt = $pdo->query(
-            "SELECT SUM(qtt)
+                "SELECT SUM(qtt)
             FROM commande
             GROUP BY qtt"
             );
         }
-
     }
-
 }

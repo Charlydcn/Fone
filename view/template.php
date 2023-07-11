@@ -86,12 +86,12 @@
                 <li>
                     <a href="index.php?action=basket">
                         <i class="fa-solid fa-bag-shopping"></i>
-                        <?php 
+                        <?php
 
-                        if($qtt === false) {
-                        echo 0;
+                        if ($qtt === false || $qtt === null) {
+                            echo 0;
                         } else {
-                        echo $qtt[0];
+                            echo $qtt[0];
                         }
                         ?>
                     </a>
