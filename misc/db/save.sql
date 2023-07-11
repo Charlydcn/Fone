@@ -22,7 +22,7 @@ USE `fone`;
 -- Listage de la structure de table fone. category
 CREATE TABLE IF NOT EXISTS `category` (
   `id_category` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(50) NOT NULL,
+  `name` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id_category`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -36,54 +36,35 @@ INSERT INTO `category` (`id_category`, `name`) VALUES
 -- Listage de la structure de table fone. commande
 CREATE TABLE IF NOT EXISTS `commande` (
   `id_commande` int NOT NULL AUTO_INCREMENT,
-  `dateCommande` date NOT NULL,
-  PRIMARY KEY (`id_commande`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-
+  `state` tinyint NOT NULL DEFAULT '0',
+  `qtt` int NOT NULL DEFAULT '1',
+  `id_product` int NOT NULL,
+  PRIMARY KEY (`id_commande`),
+  KEY `id_product` (`id_product`),
+  CONSTRAINT `commande_ibfk_1` FOREIGN KEY (`id_product`) REFERENCES `product` (`id_product`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Listage des données de la table fone.commande : ~0 rows (environ)
-
--- Listage de la structure de table fone. contenir
-CREATE TABLE IF NOT EXISTS `contenir` (
-  `id_product` int NOT NULL,
-  `id_commande` int NOT NULL,
-  `qtt` int NOT NULL,
-  PRIMARY KEY (`id_product`,`id_commande`),
-  KEY `id_commande` (`id_commande`),
-  CONSTRAINT `contenir_ibfk_1` FOREIGN KEY (`id_product`) REFERENCES `product` (`id_product`),
-  CONSTRAINT `contenir_ibfk_2` FOREIGN KEY (`id_commande`) REFERENCES `commande` (`id_commande`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-
-
--- Listage des données de la table fone.contenir : ~0 rows (environ)
+INSERT INTO `commande` (`id_commande`, `state`, `qtt`, `id_product`) VALUES
+	(1, 0, 2, 1);
 
 -- Listage de la structure de table fone. email
 CREATE TABLE IF NOT EXISTS `email` (
   `id_email` int NOT NULL AUTO_INCREMENT,
   `mail` varchar(75) NOT NULL,
   PRIMARY KEY (`id_email`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 -- Listage des données de la table fone.email : ~0 rows (environ)
-
--- Listage de la structure de table fone. order
-CREATE TABLE IF NOT EXISTS `order` (
-  `id_order` int NOT NULL AUTO_INCREMENT,
-  PRIMARY KEY (`id_order`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-
-
--- Listage des données de la table fone.order : ~0 rows (environ)
 
 -- Listage de la structure de table fone. product
 CREATE TABLE IF NOT EXISTS `product` (
   `id_product` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(100) NOT NULL,
+  `name` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   `price` decimal(7,2) NOT NULL,
   `sale` int DEFAULT NULL,
-  `description` text,
-  `img` varchar(255) DEFAULT NULL,
+  `description` text COLLATE utf8mb4_unicode_ci,
+  `img` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `id_category` int DEFAULT NULL,
   PRIMARY KEY (`id_product`),
   KEY `id_category` (`id_category`),
@@ -93,7 +74,7 @@ CREATE TABLE IF NOT EXISTS `product` (
 -- Listage des données de la table fone.product : ~26 rows (environ)
 INSERT INTO `product` (`id_product`, `name`, `price`, `sale`, `description`, `img`, `id_category`) VALUES
 	(1, 'Apple iPhone 13', 1159.00, 20, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis nobis laboriosam, impedit id suscipit quas ', 'iphone13.png', 1),
-	(2, 'Huawei P40 Pro', 1059.00, 95, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis nobis laboriosam, impedit id suscipit quas ', 'iphone13.png', 1),
+	(2, 'Huawei P40 Pro', 1050.00, 95, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis nobis laboriosam, impedit id suscipit quas ', 'iphone13.png', 1),
 	(3, 'Samsung S22 Ultra', 1059.00, NULL, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis nobis laboriosam, impedit id suscipit quas ', 'iphone13.png', 1),
 	(4, 'OnePlus 8 Pro', 749.00, NULL, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis nobis laboriosam, impedit id suscipit quas ', 'iphone13.png', 1),
 	(5, 'Apple iPhone 13 Mini', 809.00, NULL, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis nobis laboriosam, impedit id suscipit quas ', 'iphone13.png', 1),
