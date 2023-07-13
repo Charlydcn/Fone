@@ -172,23 +172,6 @@ class adminController
 
     function editProduct($id)
     {
-        // GET OLD CATEGORY QUERY ***********************************************
-
-        $pdo = Connect::dbConnect();
-
-        $getOldCategory = $pdo->prepare(
-            "SELECT name
-                FROM category
-                WHERE id_category = (
-                    SELECT id_category
-                    FROM product
-                    WHERE id_product = :id
-                    )"
-        );
-
-        $getOldCategory->execute([':id' => $id]);
-        $oldCategory = $getOldCategory->fetch();
-
         if (isset($_POST['submit'])) {
             $name = filter_input(INPUT_POST, 'name', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             $price = filter_input(INPUT_POST, 'price', FILTER_VALIDATE_FLOAT);
@@ -198,6 +181,8 @@ class adminController
 
             // UPDATE QUERY ***********************************************
             if ($name && $price && $category && $description) {
+
+                $pdo = Connect::dbConnect();
 
                 $updateQry = $pdo->prepare(
                     "UPDATE product
