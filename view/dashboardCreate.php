@@ -21,47 +21,47 @@ if (isset($_SESSION['message'])) {
                 Product name :
                 <input type="text" name="name" required>
             </label>
-        
+
             <label>
                 Price :
                 <input type="number" name="price" step=".01" min="0" required>
             </label>
 
             <label>
-                Category : 
+                Category :
                 <select name="category" required>
                     <option value="" disabled selected>--Select--</option>
-            
+
                     <?php
-                    foreach($categories as $category) {
+                    foreach ($categories as $category) {
                     ?>
-            
-                    <option value="<?=$category['name']?>" name="category">
-                        <?=ucfirst($category['name'])?>
-                    </option>
-            
+
+                        <option value="<?= $category['name'] ?>" name="category">
+                            <?= ucfirst($category['name']) ?>
+                        </option>
+
                     <?php } ?>
-            
+
                 </select>
             </label>
-        
+
             <label>
                 Reduction :
                 <input type="number" name="sale" min="0" max="100">
             </label>
-        
+
             <label>
                 Description :
                 <textarea name="description" cols="20" rows="5" required></textarea>
             </label>
-        
+
             <label>
                 Image :
                 <input type="file" name="img">
             </label>
-    
+
             <input type="submit" name="submit" value="Create product">
-    
+
         </div>
     </fieldset>
 </form>
@@ -73,7 +73,11 @@ $title = "Creation";
 $secondTitle = "Creation";
 $css = "admin.css";
 $js = "";
-$basketQtt = $qtt;
+if (isset($qtt) && $qtt != null) {
+    $basketQtt = $qtt;
+} else {
+    $qtt = 0;
+}
 require 'template.php';
 
 ?>

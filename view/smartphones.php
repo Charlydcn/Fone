@@ -18,7 +18,7 @@ $products = $sql->fetchAll();
 
     ?>
 
-        <ul>    
+        <ul>
             <a href="index.php?action=productDetails&id=<?= $product['id_product'] ?>">
                 <img src="public/img/<?= $product['category'] . "/" . $product['img'] ?>" alt="<?= $product['name'] ?> image">
                 <li>
@@ -56,7 +56,11 @@ $title = "Smartphones";
 $secondTitle = "Smartphones";
 $css = "products.css";
 $js = "";
-$basketQtt = $qtt;
+if (isset($qtt) && $qtt != null) {
+    $basketQtt = $qtt;
+} else {
+    $qtt = 0;
+}
 require 'template.php';
 
 ?>

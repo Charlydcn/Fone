@@ -16,7 +16,7 @@ if (isset($_SESSION['message'])) {
 
         <input type="password" name="password" required>
         <input type="submit" name="submit" value="Enter">
-    
+
     </form>
 </div>
 
@@ -26,7 +26,11 @@ $content = ob_get_clean();
 $title = "Admin";
 $secondTitle = "Admin";
 $css = "admin.css";
-$basketQtt = $qtt;
+if (isset($qtt) && $qtt != null) {
+    $basketQtt = $qtt;
+} else {
+    $qtt = 0;
+}
 require 'template.php';
 
 ?>

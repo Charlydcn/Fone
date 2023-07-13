@@ -17,8 +17,8 @@ class productController
 
         $basketQtt = $pdo->query(
             "SELECT SUM(qtt)
-        FROM commande
-        GROUP BY qtt"
+            FROM commande
+            WHERE state = 0"
         );
 
         $qtt = $basketQtt->fetch();
@@ -45,8 +45,8 @@ class productController
 
         $basketQtt = $pdo->query(
             "SELECT SUM(qtt)
-        FROM commande
-        GROUP BY qtt"
+            FROM commande
+            WHERE state = 0"
         );
 
         $qtt = $basketQtt->fetch();
@@ -73,8 +73,8 @@ class productController
 
         $basketQtt = $pdo->query(
             "SELECT SUM(qtt)
-        FROM commande
-        GROUP BY qtt"
+            FROM commande
+            WHERE state = 0"
         );
 
         $qtt = $basketQtt->fetch();
@@ -129,8 +129,8 @@ class productController
 
         $basketQtt = $pdo->query(
             "SELECT SUM(qtt)
-        FROM commande
-        GROUP BY qtt"
+            FROM commande
+            WHERE state = 0"
         );
 
         $qtt = $basketQtt->fetch();
@@ -153,8 +153,8 @@ class productController
 
         $basketQtt = $pdo->query(
             "SELECT SUM(qtt)
-        FROM commande
-        GROUP BY qtt"
+            FROM commande
+            WHERE state = 0"
         );
 
         $qtt = $basketQtt->fetch();
@@ -179,8 +179,8 @@ class productController
 
         $basketQtt = $pdo->query(
             "SELECT SUM(qtt)
-        FROM commande
-        GROUP BY qtt"
+            FROM commande
+            WHERE state = 0"
         );
 
         $qtt = $basketQtt->fetch();

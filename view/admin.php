@@ -24,7 +24,11 @@ $content = ob_get_clean();
 $title = "Admin";
 $secondTitle = "Admin";
 $css = "admin.css";
-$basketQtt = $qtt;
+if (isset($qtt) && $qtt != null) {
+    $basketQtt = $qtt;
+} else {
+    $qtt = 0;
+}
 require 'template.php';
 
 ?>

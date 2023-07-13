@@ -20,7 +20,7 @@ if (isset($_SESSION['message'])) {
     <?php
     if ($product['sale'] > 0) {
     ?>
-    
+
         <p class="salePercentage">-<?= $product['sale'] ?>%</p>
 
     <?php } ?>
@@ -70,7 +70,11 @@ $secondTitle = "Product details";
 $css = "productDetails.css";
 $css2 = "products.css";
 $js = "productDetails.js";
-$basketQtt = $qtt;
+if (isset($qtt) && $qtt != null) {
+    $basketQtt = $qtt;
+} else {
+    $qtt = 0;
+}
 require 'template.php';
 
 ?>

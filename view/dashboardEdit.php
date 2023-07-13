@@ -66,8 +66,8 @@ $product = $sql->fetch();
 
             <div>
                 <input type="submit" name="submit" value="Edit product">
-                
-                <a href="index.php?action=deleteProduct&id=<?=$product['id_product']?>">
+
+                <a href="index.php?action=deleteProduct&id=<?= $product['id_product'] ?>">
                     <i class="fa-solid fa-trash"></i>
                 </a>
             </div>
@@ -87,7 +87,11 @@ $title = "Edit product";
 $secondTitle = "Edit product";
 $css = "admin.css";
 $js = "";
-$basketQtt = $qtt;
+if (isset($qtt) && $qtt != null) {
+    $basketQtt = $qtt;
+} else {
+    $qtt = 0;
+}
 require 'template.php';
 
 ?>

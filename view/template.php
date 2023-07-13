@@ -88,7 +88,7 @@
                         <i class="fa-solid fa-bag-shopping"></i>
                         <?php
 
-                        if ($qtt === false || $qtt === null) {
+                        if ($qtt === false || $qtt === null || !isset($qtt)) {
                             echo 0;
                         } else {
                             echo $qtt[0];
