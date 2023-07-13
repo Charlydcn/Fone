@@ -23,8 +23,8 @@ $products = $sql->fetchAll();
                 <img src="public/img/<?= $product['category'] . "/" . $product['img'] ?>" alt="<?= $product['name'] ?> image">
                 <li>
                     <h3><?= $product['name'] ?></h3>
+                </li>
             </a>
-            </li>
 
             <?php
             if ($product['sale'] > 0) {

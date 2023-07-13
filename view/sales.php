@@ -23,8 +23,9 @@ $products = $sql->fetchAll();
                 <img src="public/img/<?= $product['category'] . "/" . $product['img'] ?>" alt="<?= $product['name'] ?> image">
                 <li>
                     <h3><?= $product['name'] ?></h3>
+                </li>
             </a>
-            </li>
+
             <li>
                 <span class="salePrice">$<?= $newPrice ?> </span>
                 <span class='oldPrice'>$<?= $product['price'] ?></span>
