@@ -65,12 +65,6 @@ if (isset($_GET['action'])) {
 
             break;
 
-        case "about":
-
-            $ctrlHome->displayAbout();
-
-            break;
-
         case "contact":
 
             $ctrlHome->displayContact();
@@ -177,6 +171,20 @@ if (isset($_GET['action'])) {
 
             break;
 
+        case "payOrder";
+
+            $ctrlBasket->payOrder($id);
+
+            Header("Location:index.php?action=orderHistory");
+
+            break;
+
+        case "orderHistory";
+
+            $ctrlBasket->orderHistory();
+
+            break;
+
         case "adminPassword";
 
             $ctrlAdmin->displayAdminPassword();
@@ -188,7 +196,5 @@ if (isset($_GET['action'])) {
             $ctrlAdmin->checkAdminPassword();
 
             break;
-
-        
     }
 }
