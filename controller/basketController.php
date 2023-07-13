@@ -16,6 +16,7 @@ class basketController
         FROM product
         INNER JOIN commande ON product.id_product = commande.id_product
         INNER JOIN category ON product.id_category = category.id_category
+        WHERE commande.state = 0
         ORDER BY price DESC"
         );
 
@@ -25,8 +26,8 @@ class basketController
 
         $basketQtt = $pdo->query(
             "SELECT SUM(qtt)
-        FROM commande
-        GROUP BY qtt"
+            FROM commande
+            WHERE state = 0"
         );
 
         $qtt = $basketQtt->fetch();
@@ -42,8 +43,8 @@ class basketController
 
         $getProductQry = $pdo->prepare(
             "SELECT id_product
-        FROM commande
-        WHERE id_product = :id"
+            FROM commande
+            WHERE id_product = :id AND state = 0"
         );
 
         $getProductQry->execute([':id' => $id]);
@@ -53,7 +54,7 @@ class basketController
         if ($product === false || $product === null) {
             $addProductQry = $pdo->prepare(
                 "INSERT INTO commande (qtt, id_product)
-            VALUES (1, :id)"
+                VALUES (1, :id)"
             );
 
             $addProductQry->execute([':id' => $id]);
@@ -65,8 +66,8 @@ class basketController
         } else {
             $getCommandeQry = $pdo->prepare(
                 "SELECT id_commande
-            FROM commande
-            WHERE id_product = :id"
+                FROM commande
+                WHERE id_product = :id AND state = 0"
             );
 
             $getCommandeQry->execute([':id' => $id]);
@@ -153,16 +154,45 @@ class basketController
         $removeQttQry->execute([':id' => $id]);
     }
 
-    function getBasketCount()
+    function payOrder($id)
     {
         $pdo = Connect::dbConnect();
+
+        $sql = $pdo->prepare(
+            "UPDATE commande
+            SET state = true
+            WHERE id_commande = :id"
+        );
+
+        $sql->execute([':id' => $id]);
+    }
+
+    function orderHistory()
+    {
+        $pdo = Connect::dbConnect();
+
+        $sql = $pdo->prepare(
+            "SELECT product.id_product, product.name, price, sale, img, id_commande, category.name AS 'category', qtt
+            FROM product
+            INNER JOIN commande ON product.id_product = commande.id_product
+            INNER JOIN category ON product.id_category = category.id_category
+            WHERE commande.state = 1    
+            ORDER BY price DESC"
+        );
+
+        $orders = $sql->fetchAll();
 
         // BASKET QTT QUERY
 
         $basketQtt = $pdo->query(
-            "SELECT SUM(qtt)
-        FROM commande
-        GROUP BY qtt"
+            "SELECT SUM(qtt) AS total
+            FROM commande
+            WHERE state = 0;
+            "
         );
+
+        $qtt = $basketQtt->fetch();
+
+        require 'view/orderHistory.php';
     }
 }
