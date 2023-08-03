@@ -11,7 +11,7 @@ if (isset($_SESSION['message'])) {
 
 <?php
 
-if(!empty($products)) {
+if (!empty($products)) {
 
 ?>
 
@@ -36,19 +36,17 @@ if(!empty($products)) {
                 $total = 0;
 
 
-                if($product['sale'] > 0 || !empty($product['sale'])) {
+                if ($product['sale'] > 0 || !empty($product['sale'])) {
 
                     $newPrice = $product['price'] * ((1 - ($product['sale']) / 100));
-                    $total += ($newPrice*$product['qtt']);
-                    $globTotal += $total; 
-
-
+                    $total += ($newPrice * $product['qtt']);
+                    $globTotal += $total;
                 } else {
-                    $total += ($product['price']*$product['qtt']);
+                    $total += ($product['price'] * $product['qtt']);
 
-                    $globTotal += $total; 
+                    $globTotal += $total;
                 }
-                
+
             ?>
                 <tr>
                     <td colspan="6" class="line"></td>
@@ -63,12 +61,12 @@ if(!empty($products)) {
                         </a>
                     </td>
 
-                    <td>                        
+                    <td>
                         <?php
                         if ($product['sale'] > 0) {
                         ?>
 
-                            <li> <!-- PRIX (solde) --> 
+                            <li> <!-- PRIX (solde) -->
                                 <span class="salePrice">$<?= number_format($newPrice, 2) ?></span>
                                 <span class='oldPrice'>$<?= number_format($product['price'], 2) ?></span>
                             </li>
@@ -85,11 +83,11 @@ if(!empty($products)) {
                     <td>
                         <div class="qtt">
                             <a href="index.php?action=removeQtt&id=<?= $product['id_product'] ?>">-</a>
-                            <p><?=$product['qtt']?></p>
+                            <p><?= $product['qtt'] ?></p>
                             <a href="index.php?action=addQtt&id=<?= $product['id_product'] ?>">+</a>
                         </div>
                     </td>
-                        <!-- TOTAL PAR PRODUIT -->
+                    <!-- TOTAL PAR PRODUIT -->
                     <td><span class="price">$<?= number_format($total, 2) ?></span></td>
 
                     <td>
@@ -102,16 +100,20 @@ if(!empty($products)) {
 
             <?php } ?>
 
-                <tr>
-                    <td>Total</td> 
-                    <!-- BIG TOTAL -->                   
-                    <td>$<?= number_format($globTotal, 2) ?></td>
-                </tr>
-                
+            <tr>
+                <td>Total</td>
+                <!-- BIG TOTAL -->
+                <td>$<?= number_format($globTotal, 2) ?></td>
+            </tr>
+
         </tbody>
     </table>
 
-    <a href="index.php?action=clearBasket">Clear basket</a>
+    <div>
+        <a href="index.php?action=clearBasket">Clear basket</a>
+        <a href="index.php?action=">Past orders</a>
+        <a href="index.php?action=payOrder&id=<?= $product['id_commande'] ?>">Pay</a>
+    </div>
 
 
 <?php } else {
@@ -127,7 +129,11 @@ $title = "Basket";
 $secondTitle = "Basket";
 $css = "basket.css";
 $js = "productDetails.js";
-$basketQtt = $qtt;
+if (isset($qtt) && $qtt != null) {
+    $basketQtt = $qtt;
+} else {
+    $qtt = 0;
+}
 require 'template.php';
 
 ?>

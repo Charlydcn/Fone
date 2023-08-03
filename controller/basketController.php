@@ -171,7 +171,7 @@ class basketController
     {
         $pdo = Connect::dbConnect();
 
-        $sql = $pdo->prepare(
+        $sql = $pdo->query(
             "SELECT product.id_product, product.name, price, sale, img, id_commande, category.name AS 'category', qtt
             FROM product
             INNER JOIN commande ON product.id_product = commande.id_product

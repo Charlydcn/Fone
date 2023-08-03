@@ -85,19 +85,46 @@ h1 {
     opacity:70%;
 }
 
-table+a {
+/* Clear Basket btn */
+table ~ div:first-of-type a:first-of-type {
     color: white;
     background-color:rgb(176, 56, 56);
     padding: 10px 30px;
     border-radius: 2px;
     transition:.3s;
     display: flex;
-    width: fit-content;
-    margin: 5% 10%;
 }
 
-table+a:hover {
+table ~ div a:hover {
     translate:5px;
+}
+
+/* Pay btn */
+table ~ div:first-of-type a:nth-of-type(2) {
+    color: white;
+    background-color:rgb(176, 56, 56);
+    padding: 10px 30px;
+    border-radius: 2px;
+    transition:.3s;
+    display: flex;
+}
+
+
+/* Past orders btn */
+table ~ div:first-of-type a:last-of-type {
+    color: white;
+    background-color:rgb(176, 56, 56);
+    padding: 10px 30px;
+    border-radius: 2px;
+    transition:.3s;
+    display: flex;
+}
+
+table ~ div:first-of-type {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-start;
+    margin: 3% 10%;
 }
 
 .oldPrice {

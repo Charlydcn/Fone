@@ -14,36 +14,27 @@ ob_start();
         $newPrice = number_format($newPrice, 2);
 
     ?>
-
-        <ul>
+        <div>
             <a href="index.php?action=productDetails&id=<?= $product['id_product'] ?>">
                 <img src="public/img/<?= $product['category'] . "/" . $product['img'] ?>" alt="<?= $product['name'] ?> image">
-                <li>
-                    <h3><?= $product['name'] ?></h3>
-                </li>
             </a>
+            <h3><?= $product['name'] ?></h3>
 
             <?php
             if ($product['sale'] > 0) {
             ?>
 
-                <li>
-                    <span class="salePrice">$<?= $newPrice ?> </span>
-                    <span class='oldPrice'>$<?= $product['price'] ?></span>
-                </li>
+                <span class="salePrice">$<?= $newPrice ?> </span>
+                <span class='oldPrice'>$<?= $product['price'] ?></span>
                 <p class="salePercentage">-<?= $product['sale'] ?>%</p>
 
             <?php } else { ?>
 
-                <li>
-                    <h2>$<?= $product['price'] ?></h2>
-                </li>
+                <h2>$<?= $product['price'] ?></h2>
 
             <?php } ?>
-        </ul>
-
+        </div>
     <?php } ?>
-
 </div>
 
 <?php
